@@ -1,11 +1,10 @@
 
-import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      HellO WOrld
-    </div>
+    <h1 className="text-5xl font-bold text-red-500">
+      Tailwind is working!
+    </h1>
   );
 }
 
