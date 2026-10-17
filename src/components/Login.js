@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { CheckValidData } from "../utils/validate";
+import { checkValidData } from "../utils/validate";
 import Header from "./Header";
 
 const Login = () => {
@@ -7,12 +7,12 @@ const Login = () => {
 
   const [errorMessage,setErrorMessage] = useState(null);
 
-  //Gets a reference of those email and pw input elements
+  const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
 
   const handleButtonClick = () => {
-    const message = CheckValidData(email.current.value, password.current.value);
+    const message = checkValidData(email.current.value, password.current.value,isSignInForm ? null : name.current.value);
     //If validation passes,null will be set for the errorMessage.
     setErrorMessage(message);
   };
@@ -42,6 +42,7 @@ const Login = () => {
           //If its a SignUp form,enter name as a input
           !isSignInForm && (
             <input
+              ref={name}
               type="text"
               placeholder="Full Name"
               className="w-full p-4 my-4 bg-gray-600"
