@@ -1,15 +1,20 @@
 import React, { useState, useRef } from "react";
+import { CheckValidData } from "../utils/validate";
 import Header from "./Header";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
 
+  const [errorMessage,setErrorMessage] = useState(null);
+
+  //Gets a reference of those email and pw input elements
   const email = useRef(null);
   const password = useRef(null);
 
   const handleButtonClick = () => {
-    console.log(email.current.value);
-    console.log(password.current.value);
+    const message = CheckValidData(email.current.value, password.current.value);
+    //If validation passes,null will be set for the errorMessage.
+    setErrorMessage(message);
   };
 
   const toggleSignInForm = () => {
@@ -56,6 +61,7 @@ const Login = () => {
           placeholder="Password"
           className="w-full p-4 my-4 bg-gray-600"
         />
+        <p className="text-red-500 font-bold text-xl">{errorMessage}</p>
         <button
           onClick={handleButtonClick}
           className="w-full p-4 my-6 text-xl bg-red-700 rounded-lg"
