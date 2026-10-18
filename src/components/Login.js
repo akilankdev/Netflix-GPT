@@ -1,20 +1,65 @@
 import React, { useState, useRef } from "react";
 import { checkValidData } from "../utils/validate";
 import Header from "./Header";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../utils/firebase";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
 
-  const [errorMessage,setErrorMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
 
   const handleButtonClick = () => {
-    const message = checkValidData(email.current.value, password.current.value,isSignInForm ? null : name.current.value);
+    const message = checkValidData(
+      email.current.value,
+      password.current.value,
+      isSignInForm ? null : name.current.value,
+    );
     //If validation passes,null will be set for the errorMessage.
     setErrorMessage(message);
+    //if email or pw is not valid input then dont run SignIn or SignUp logic.
+    if (message) return;
+
+    if (!isSignInForm) {
+      //Sign up logic.Below code is copied from the documentation and the API email
+      // and pw arguments are replaced by our email and password useRef variables.
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value,
+      )
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+          console.log(user); //prints the user object
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + " - " + errorMessage);
+ 
+        });
+    } else {
+      //Sign In logic
+      signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorMessage);
+        });
+    }
   };
 
   const toggleSignInForm = () => {
