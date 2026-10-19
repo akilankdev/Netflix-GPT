@@ -55,9 +55,8 @@ const Login = () => {
       )
         .then((userCredential) => {
           // Signed in
-          const user = userCredential.user;
+          //const user = userCredential.user;
           navigate("/browse");
-          console.log(user);
         })
         .catch((error) => {
           //const errorCode = error.code;
@@ -73,7 +72,7 @@ const Login = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
+      <Header showUserIcon={false}/>
 
       <main className="flex-1 relative">
         <div className="absolute inset-0">
@@ -85,7 +84,7 @@ const Login = () => {
         </div>
         <form
           onSubmit={(e) => e.preventDefault()}
-          className="w-3/12 mt-20 mx-auto right-0 left-0 relative bg-black p-12 text-white rounded-lg bg-opacity-70"
+          className="w-3/12 mt-10 mx-auto relative bg-black p-12 text-white rounded-lg bg-opacity-70"
         >
           <h1 className="font-bold text-3xl mb-3">
             {isSignInForm ? "Sign In" : "Sign Up"}
