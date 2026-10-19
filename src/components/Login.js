@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import { checkValidData } from "../utils/validate";
+import Footer from "./Footer";
 import Header from "./Header";
 import {
   createUserWithEmailAndPassword,
@@ -41,21 +42,24 @@ const Login = () => {
           console.log(user); //prints the user object
         })
         .catch((error) => {
-          const errorCode = error.code;
+          //const errorCode = error.code;
           const errorMessage = error.message;
-          setErrorMessage(errorCode + " - " + errorMessage);
- 
+          setErrorMessage(errorMessage);
         });
     } else {
       //Sign In logic
-      signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value,
+      )
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
           console.log(user);
         })
         .catch((error) => {
-          const errorCode = error.code;
+          //const errorCode = error.code;
           const errorMessage = error.message;
           setErrorMessage(errorMessage);
         });
@@ -67,62 +71,66 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <Header />
 
-      <div className="absolute">
-        <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/6e4b7575-5e77-4cbc-b380-6b57b4cb2652/web/IN-en-20261012-TRIFECTA-perspective_df4c506a-8fba-4611-95c0-3190bfc683ca_large.jpg"
-          alt="background-image"
-        ></img>
-      </div>
-      <form
-        onSubmit={(e) => e.preventDefault()}
-        className="w-3/12 my-36 mx-auto right-0 left-0 absolute bg-black p-12 text-white rounded-lg bg-opacity-70"
-      >
-        <h1 className="font-bold text-3xl mb-3">
-          {isSignInForm ? "Sign In" : "Sign Up"}
-        </h1>
-        {
-          //If its a SignUp form,enter name as a input
-          !isSignInForm && (
-            <input
-              ref={name}
-              type="text"
-              placeholder="Full Name"
-              className="w-full p-4 my-4 bg-gray-600"
-            />
-          )
-        }
+      <main className="flex-1 relative">
+        <div className="absolute inset-0">
+          <img
+            src="https://assets.nflxext.com/ffe/siteui/vlv3/6e4b7575-5e77-4cbc-b380-6b57b4cb2652/web/IN-en-20261012-TRIFECTA-perspective_df4c506a-8fba-4611-95c0-3190bfc683ca_large.jpg"
+            alt="background-image"
+            className="w-full h-full object-cover"
+          ></img>
+        </div>
+        <form
+          onSubmit={(e) => e.preventDefault()}
+          className="w-3/12 mt-20 mx-auto right-0 left-0 relative bg-black p-12 text-white rounded-lg bg-opacity-70"
+        >
+          <h1 className="font-bold text-3xl mb-3">
+            {isSignInForm ? "Sign In" : "Sign Up"}
+          </h1>
+          {
+            //If its a SignUp form,enter name as a input
+            !isSignInForm && (
+              <input
+                ref={name}
+                type="text"
+                placeholder="Full Name"
+                className="w-full p-4 my-4 bg-gray-600"
+              />
+            )
+          }
 
-        <input
-          ref={email}
-          type="text"
-          placeholder="Email address"
-          className="w-full p-4 my-4 bg-gray-600"
-        />
-        <input
-          ref={password}
-          type="password"
-          placeholder="Password"
-          className="w-full p-4 my-4 bg-gray-600"
-        />
-        <p className="text-red-500 font-bold text-xl">{errorMessage}</p>
-        <button
-          onClick={handleButtonClick}
-          className="w-full p-4 my-6 text-xl bg-red-700 rounded-lg"
-        >
-          {isSignInForm ? "Sign In" : "Sign Up"}
-        </button>
-        <p
-          className="cursor-pointer p-4 font-bold text-blue-300"
-          onClick={toggleSignInForm}
-        >
-          {isSignInForm
-            ? "Don't have an account? Sign Up here"
-            : "Already registered? Sign In here"}
-        </p>
-      </form>
+          <input
+            ref={email}
+            type="text"
+            placeholder="Email address"
+            className="w-full p-4 my-4 bg-gray-600"
+          />
+          <input
+            ref={password}
+            type="password"
+            placeholder="Password"
+            className="w-full p-4 my-4 bg-gray-600"
+          />
+          <p className="text-red-500 font-bold text-xl">{errorMessage}</p>
+          <button
+            onClick={handleButtonClick}
+            className="w-full p-4 my-6 text-xl bg-red-700 rounded-lg"
+          >
+            {isSignInForm ? "Sign In" : "Sign Up"}
+          </button>
+          <p
+            className="cursor-pointer p-4 font-bold text-blue-300"
+            onClick={toggleSignInForm}
+          >
+            {isSignInForm
+              ? "Don't have an account? Sign Up here"
+              : "Already registered? Sign In here"}
+          </p>
+        </form>
+      </main>
+      <Footer />
     </div>
   );
 };
