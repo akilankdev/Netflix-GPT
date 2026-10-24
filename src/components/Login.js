@@ -5,11 +5,15 @@ import Header from "./Header";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
 
 const Login = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isSignInForm, setIsSignInForm] = useState(true);
 
@@ -38,8 +42,31 @@ const Login = () => {
       )
         .then((userCredential) => {
           // Signed up
-          //const user = userCredential.user;
-          navigate("/browse");
+          const user = userCredential.user;
+          //This API will update the user object with the Full Name input
+          updateProfile(user, {
+            displayName: name.current.value,
+            //akilankdev github profile pic,just hard coded.
+            photoURL:
+              "https://avatars.githubusercontent.com/u/210964858?v=4&size=64",
+          })
+            .then(() => {
+              // Profile updated!
+              dispatch(
+                addUser({
+                  uid: user.uid,
+                  email: user.email,
+                  displayName: user.displayName,
+                  photoURL: user.photoURL,
+                }),
+              );
+              navigate("/browse");
+              console.log(user);
+            })
+            .catch((error) => {
+              // An error occurred
+              setErrorMessage(errorMessage);
+            });
         })
         .catch((error) => {
           //const errorCode = error.code;
@@ -72,7 +99,7 @@ const Login = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header showUserIcon={false}/>
+      <Header showUserIcon={false} />
 
       <main className="flex-1 relative">
         <div className="absolute inset-0">

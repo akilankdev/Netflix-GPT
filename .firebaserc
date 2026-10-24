@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "netflixgpt-7cdef"
-  }
+    "default": "streamgpt-2fe11"
+  },
+  "targets": {},
+  "etags": {}
 }
