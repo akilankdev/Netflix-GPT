@@ -7,29 +7,28 @@ import { useSelector } from "react-redux";
 const UserIcon = () => {
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
-  // console.log(user.photoURL);
   const [isIconClicked, setIsIconClicked] = useState(false);
   const handleIconClick = () => {
     setIsIconClicked(!isIconClicked);
   };
 
   //Signout Logic,Redux store will be automatically dispatch(removeUser()) updated by onAuthStateChanged().So we dont need to do that here.
-  const handleSignout = () => {
-    signOut(auth)
-      .then(() => {
-        // Sign-out successful.
-        navigate("/");
-      })
-      .catch((error) => {
-        // An error happened.
-        navigate("/error");
-      });
+  const handleSignout = async () => {
+    try {
+      await signOut(auth);
+      //signout success
+      navigate("/");
+    } catch(error) {
+      navigate("/error");
+    }
   };
 
   //https://tse3.mm.bing.net/th/id/OIP.kYYbdJhBIh1SEi8MKTPYpgHaHa?r=0&pid=Api&h=220&P=0 => the URL of netflix user profilepic
   return (
     <div className="relative justify-items-end pr-10 t-5">
-      {user && (
+      {
+      //If user exists but photoURL is null, the image element will still render. If you want to handle that too, you can use user?.photoURL
+      user?.photoURL && (
         <img
           src={user.photoURL}
           alt="user-icon"

@@ -23,7 +23,7 @@ const Login = () => {
   const email = useRef(null);
   const password = useRef(null);
 
-  const handleButtonClick = () => {
+  const handleButtonClick = async () => {
     const message = checkValidData(
       email.current.value,
       password.current.value,
@@ -31,65 +31,56 @@ const Login = () => {
     );
     //If validation passes,null will be set for the errorMessage.
     setErrorMessage(message);
-    //if email or pw is not valid input then dont run SignIn or SignUp logic.
+    //if email or pw input is not valid then dont run SignIn or SignUp logic.
     if (message) return;
 
     if (!isSignInForm) {
-      createUserWithEmailAndPassword(
-        auth,
-        email.current.value,
-        password.current.value,
-      )
-        .then((userCredential) => {
-          // Signed up
-          const user = userCredential.user;
-          //This API will update the user object with the Full Name input
-          updateProfile(user, {
-            displayName: name.current.value,
-            //akilankdev github profile pic,just hard coded.
-            photoURL:
-              "https://avatars.githubusercontent.com/u/210964858?v=4&size=64",
-          })
-            .then(() => {
-              // Profile updated!
-              dispatch(
-                addUser({
-                  uid: user.uid,
-                  email: user.email,
-                  displayName: user.displayName,
-                  photoURL: user.photoURL,
-                }),
-              );
-              navigate("/browse");
-              console.log(user);
-            })
-            .catch((error) => {
-              // An error occurred
-              setErrorMessage(errorMessage);
-            });
-        })
-        .catch((error) => {
-          //const errorCode = error.code;
-          const errorMessage = error.message;
-          setErrorMessage(errorMessage);
+      try {
+        //SIGNUP logic
+        // 1. Create a new user
+        const userCredentials = await createUserWithEmailAndPassword(
+          auth,
+          email.current.value,
+          password.current.value,
+        );
+        // 2. Update the user's profile
+        const user = userCredentials.user;
+        await updateProfile(user, {
+          displayName: name.current.value,
+          //akilankdev github profile pic,just hard coded.
+          photoURL:
+            "https://avatars.githubusercontent.com/u/210964858?v=4&size=64",
         });
+        // 3. Dispatch the user details to Redux
+        dispatch(
+          addUser({
+            uid: user.uid,
+            email: user.email,
+            displayName: user.displayName,
+            photoURL: user.photoURL,
+          }),
+        );
+        // 4. Navigate to the Browse page
+        navigate("/browse");
+      } catch (error) {
+        // Handle errors from either Firebase operation
+        setErrorMessage(error.message);
+      }
     } else {
       //Sign In logic
-      signInWithEmailAndPassword(
-        auth,
-        email.current.value,
-        password.current.value,
-      )
-        .then((userCredential) => {
-          // Signed in
-          //const user = userCredential.user;
-          navigate("/browse");
-        })
-        .catch((error) => {
-          //const errorCode = error.code;
-          const errorMessage = error.message;
-          setErrorMessage(errorMessage);
-        });
+      try {
+        //1.Sign in
+        await signInWithEmailAndPassword(
+          auth,
+          email.current.value,
+          password.current.value,
+        );
+        //2.Navigate to browse page
+        navigate("/browse");
+      } catch (error) {
+        //catch errors during sign in
+        setErrorMessage(error.message);
+      }
     }
   };
 
