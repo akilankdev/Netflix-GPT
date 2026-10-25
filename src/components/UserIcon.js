@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const UserIcon = () => {
-  const navigate = useNavigate();
   const user = useSelector((store) => store.user);
   const [isIconClicked, setIsIconClicked] = useState(false);
   const handleIconClick = () => {
@@ -17,9 +15,8 @@ const UserIcon = () => {
     try {
       await signOut(auth);
       //signout success
-      navigate("/");
     } catch(error) {
-      navigate("/error");
+      console.log(error);
     }
   };
 

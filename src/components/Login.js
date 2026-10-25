@@ -8,13 +8,11 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 
 const Login = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [isSignInForm, setIsSignInForm] = useState(true);
 
   const [errorMessage, setErrorMessage] = useState(null);
@@ -60,8 +58,6 @@ const Login = () => {
             photoURL: user.photoURL,
           }),
         );
-        // 4. Navigate to the Browse page
-        navigate("/browse");
       } catch (error) {
         // Handle errors from either Firebase operation
         setErrorMessage(error.message);
@@ -75,8 +71,6 @@ const Login = () => {
           email.current.value,
           password.current.value,
         );
-        //2.Navigate to browse page
-        navigate("/browse");
       } catch (error) {
         //catch errors during sign in
         setErrorMessage(error.message);
@@ -89,15 +83,16 @@ const Login = () => {
   };
 
   return (
+    //https://assets.nflxext.com/ffe/siteui/vlv3/6e4b7575-5e77-4cbc-b380-6b57b4cb2652/web/IN-en-20261012-TRIFECTA-perspective_df4c506a-8fba-4611-95c0-3190bfc683ca_large.jpg
     <div className="flex flex-col min-h-screen">
       <Header showUserIcon={false} />
 
       <main className="flex-1 relative">
         <div className="absolute inset-0">
           <img
-            src="https://assets.nflxext.com/ffe/siteui/vlv3/6e4b7575-5e77-4cbc-b380-6b57b4cb2652/web/IN-en-20261012-TRIFECTA-perspective_df4c506a-8fba-4611-95c0-3190bfc683ca_large.jpg"
+            src="/MovieCollage.png"
             alt="background-image"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover "
           ></img>
         </div>
         <form
@@ -134,7 +129,7 @@ const Login = () => {
           <p className="text-red-500 font-bold text-xl">{errorMessage}</p>
           <button
             onClick={handleButtonClick}
-            className="w-full p-4 my-6 text-xl bg-red-700 rounded-lg"
+            className="w-full p-4 my-6 text-xl bg-blue-700 rounded-lg"
           >
             {isSignInForm ? "Sign In" : "Sign Up"}
           </button>
