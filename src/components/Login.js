@@ -10,9 +10,13 @@ import {
 import { auth } from "../utils/firebase";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import DisclaimerPopup from "./DisclaimerPopup";
 
 const Login = () => {
   const dispatch = useDispatch();
+  //localStorage is used to prevent the disclaimer from showing again if we signout or login component reloads
+  const show = localStorage.getItem("disclaimerAccepted")? false : true;
+  const [showDisclaimer, setShowDisclaimer] = useState(show);
   const [isSignInForm, setIsSignInForm] = useState(true);
 
   const [errorMessage, setErrorMessage] = useState(null);
@@ -86,7 +90,6 @@ const Login = () => {
     //https://assets.nflxext.com/ffe/siteui/vlv3/6e4b7575-5e77-4cbc-b380-6b57b4cb2652/web/IN-en-20261012-TRIFECTA-perspective_df4c506a-8fba-4611-95c0-3190bfc683ca_large.jpg
     <div className="flex flex-col min-h-screen">
       <Header showUserIcon={false} />
-
       <main className="flex-1 relative">
         <div className="absolute inset-0">
           <img
@@ -97,7 +100,9 @@ const Login = () => {
         </div>
         <form
           onSubmit={(e) => e.preventDefault()}
-          className="w-3/12 mt-10 mx-auto relative bg-black p-12 text-white rounded-lg bg-opacity-70"
+          className="relative z-10 w-full max-w-md
+                mx-4 sm:mx-auto
+                bg-black/70 p-6 sm:p-10 rounded-lg mt-32"
         >
           <h1 className="font-bold text-3xl mb-3">
             {isSignInForm ? "Sign In" : "Sign Up"}
@@ -144,6 +149,12 @@ const Login = () => {
         </form>
       </main>
       <Footer />
+
+      {showDisclaimer && (
+        <DisclaimerPopup onContinue={() =>{
+          localStorage.setItem("disclaimerAccepted","true");
+          setShowDisclaimer(false)}} />
+      )}
     </div>
   );
 };
