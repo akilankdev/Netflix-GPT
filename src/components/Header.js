@@ -35,6 +35,7 @@ const Header = ({showUserIcon}) => {
         }
       });
       //returning unsubscribe cleans up the Firebase authentication listener when the component unmounts. This is good practice and helps prevent duplicate listeners.
+      //return in useEffect always run when the component unmounts
       return unsubscribe;
     }, [dispatch,navigate]);
   return (
@@ -42,8 +43,6 @@ const Header = ({showUserIcon}) => {
       <img src="/STREAMGPTlogo.png" alt="netflix-logo" className="w-44"></img>
       {showUserIcon? <UserIcon /> : ""}
     </div>
-    //https://occ.a.nflxso.net/dnmt/api/v6/iL4oJVDYZ8KLSrJ6eG2OwtghbfQ/AAAAAVIENVPMEM3Kn4hVzJseX4N8xPjtBDIpwuFDucWksdxQZ8Ss6Xf8U_vt7ThYYfRmzq0x1CS3nOwTGyVrgADvwfB_tPiK_liS2RjvI40RJSzbKRk-o8b3nCxHfCCnBsyB2XBB9_vRoSmN.svg
   )
 }
-//Akilan@Netflix231026
 export default Header

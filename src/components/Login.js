@@ -11,11 +11,12 @@ import { auth } from "../utils/firebase";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import DisclaimerPopup from "./DisclaimerPopup";
+import { NETFLIX_USER_AVATAR } from "../utils/constants";
 
 const Login = () => {
   const dispatch = useDispatch();
-  //localStorage is used to prevent the disclaimer from showing again if we signout or login component reloads
-  const show = localStorage.getItem("disclaimerAccepted")? false : true;
+  //sessionStorage is used to prevent the disclaimer from showing again until the tab closes,shows the disclaimer if we open new tab
+  const show = sessionStorage.getItem("disclaimerAccepted")? false : true;
   const [showDisclaimer, setShowDisclaimer] = useState(show);
   const [isSignInForm, setIsSignInForm] = useState(true);
 
@@ -50,8 +51,7 @@ const Login = () => {
         await updateProfile(user, {
           displayName: name.current.value,
           //akilankdev github profile pic,just hard coded.
-          photoURL:
-            "https://avatars.githubusercontent.com/u/210964858?v=4&size=64",
+          photoURL: NETFLIX_USER_AVATAR,
         });
         // 3. Dispatch the user details to Redux
         dispatch(
@@ -87,7 +87,6 @@ const Login = () => {
   };
 
   return (
-    //https://assets.nflxext.com/ffe/siteui/vlv3/6e4b7575-5e77-4cbc-b380-6b57b4cb2652/web/IN-en-20261012-TRIFECTA-perspective_df4c506a-8fba-4611-95c0-3190bfc683ca_large.jpg
     <div className="flex flex-col min-h-screen">
       <Header showUserIcon={false} />
       <main className="flex-1 relative">
@@ -152,7 +151,7 @@ const Login = () => {
 
       {showDisclaimer && (
         <DisclaimerPopup onContinue={() =>{
-          localStorage.setItem("disclaimerAccepted","true");
+          sessionStorage.setItem("disclaimerAccepted","true");
           setShowDisclaimer(false)}} />
       )}
     </div>
