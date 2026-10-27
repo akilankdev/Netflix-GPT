@@ -15,9 +15,9 @@ const MainContainer = () => {
 //relative — establishes a positioning context for the overlapping elements.
 // h-screen — sets the section's height to the viewport height (100vh).
 // overflow-hidden — clips content that extends beyond the section's boundaries.
-    <div className='overflow-hidden relative h-screen'>
-      <VideoBackground movieId={id}/>
+    <div className='overflow-hidden h-screen relative'>
       <VideoTitle title={original_title} overview={overview}/>
+      <VideoBackground movieId={id}/>
     </div>
   )
 }
