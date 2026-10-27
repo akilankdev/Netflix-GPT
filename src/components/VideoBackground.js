@@ -1,24 +1,12 @@
-import React, { useEffect } from 'react'
-import { API_OPTIONS } from '../utils/constants'
-import { useDispatch, useSelector } from 'react-redux';
-import { addTrailerVideo } from '../utils/moviesSlice';
+
+import { useSelector } from 'react-redux';
+
+import useMovieTrailer from '../hooks/useMovieTrailer';
 const VideoBackground = ({movieId}) => {
-  const dispatch = useDispatch();
   //Must use optional chaining
   const trailerKey = useSelector((store)=> store.movies.trailerVideo?.key);
-  const getMovieVideos = async () => {
-    const data = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`, API_OPTIONS);
-    const json = await data.json();
-    //Filtering the all the videos which are Trailers
-    const filteredTrailers = json.results.filter((video) => video.type === "Trailer");
-    //Handling the case if there is no trailer video for that movie
-    const trailer = filteredTrailers.length? filteredTrailers[0] : json.results[0];
-    dispatch(addTrailerVideo(trailer));
-    console.log(trailer);
-  }
-  useEffect(()=>{
-    getMovieVideos();
-  },[])
+  //Custom hook to handle fetching data and update redux
+  useMovieTrailer(movieId);
   return (
     <div>
       {/* Copied from Youtube embed */}
