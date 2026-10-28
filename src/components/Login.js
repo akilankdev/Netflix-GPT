@@ -11,9 +11,11 @@ import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import DisclaimerPopup from "./DisclaimerPopup";
 import { NETFLIX_USER_AVATAR } from "../utils/constants";
-import { LogIn, UserRoundPlus } from "lucide-react";
+import { LogIn, UserRoundPlus, LoaderCircle } from "lucide-react";
 
 const Login = () => {
+  //Loading spinner state
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   //sessionStorage is used to prevent the disclaimer from showing again until the tab closes,shows the disclaimer if we open new tab
   const show = sessionStorage.getItem("disclaimerAccepted") ? false : true;
@@ -27,6 +29,7 @@ const Login = () => {
   const password = useRef(null);
 
   const handleButtonClick = async () => {
+    setIsLoading(true);
     const message = checkValidData(
       email.current.value,
       password.current.value,
@@ -35,7 +38,10 @@ const Login = () => {
     //If validation passes,null will be set for the errorMessage.
     setErrorMessage(message);
     //if email or pw input is not valid then dont run SignIn or SignUp logic.
-    if (message) return;
+    if (message) {
+      setIsLoading(false);
+      return;
+    }
 
     if (!isSignInForm) {
       try {
@@ -78,6 +84,8 @@ const Login = () => {
       } catch (error) {
         //catch errors during sign in
         setErrorMessage(error.message);
+      } finally {
+        setIsLoading(false);
       }
     }
   };
@@ -103,10 +111,9 @@ const Login = () => {
                 mx-4 sm:mx-auto
                 bg-black/70 p-4 sm:p-10 rounded-lg mt-28"
         >
-          <h1 className="font-bold text-3xl mb-3 text-white flex items-center gap-2">
-            
+          <h1 className="font-bold text-3xl mb-3 text-white flex items-center gap-4">
+            {isSignInForm ? <LogIn size={25} /> : <UserRoundPlus size={25} />}
             {isSignInForm ? "Sign In" : "Sign Up"}
-            
           </h1>
           {
             //If its a SignUp form,enter name as a input
@@ -135,10 +142,11 @@ const Login = () => {
           <p className="text-red-500 font-bold text-xl">{errorMessage}</p>
           <button
             onClick={handleButtonClick}
+            disabled={isLoading}
             className="w-full p-3 my-6 text-xl font-bold bg-blue-700 rounded-lg text-white flex items-center gap-2 justify-center"
           >
             {isSignInForm ? "Sign In" : "Sign Up"}
-            {isSignInForm ? <LogIn size={25} /> : <UserRoundPlus size={25} />}
+            {isLoading && <LoaderCircle size={16} className="animate-spin" />}
           </button>
           <p
             className="cursor-pointer p-3 text-lg hover:underline text-blue-300"
