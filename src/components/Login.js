@@ -1,6 +1,5 @@
 import React, { useState, useRef } from "react";
 import { checkValidData } from "../utils/validate";
-import Footer from "./Footer";
 import Header from "./Header";
 import {
   createUserWithEmailAndPassword,
@@ -99,11 +98,11 @@ const Login = () => {
         </div>
         <form
           onSubmit={(e) => e.preventDefault()}
-          className="relative z-10 w-full max-w-md
+          className="relative z-10 max-w-96
                 mx-4 sm:mx-auto
-                bg-black/70 p-6 sm:p-10 rounded-lg mt-32"
+                bg-black/70 p-4 sm:p-10 rounded-lg mt-28"
         >
-          <h1 className="font-bold text-3xl mb-3">
+          <h1 className="font-bold text-3xl mb-3 text-white">
             {isSignInForm ? "Sign In" : "Sign Up"}
           </h1>
           {
@@ -113,7 +112,7 @@ const Login = () => {
                 ref={name}
                 type="text"
                 placeholder="Full Name"
-                className="w-full p-4 my-4 bg-gray-600"
+                className="w-full p-3 my-4 bg-gray-600"
               />
             )
           }
@@ -122,23 +121,23 @@ const Login = () => {
             ref={email}
             type="text"
             placeholder="Email address"
-            className="w-full p-4 my-4 bg-gray-600"
+            className="w-full p-3 my-4 bg-gray-600"
           />
           <input
             ref={password}
             type="password"
             placeholder="Password"
-            className="w-full p-4 my-4 bg-gray-600"
+            className="w-full p-3 my-4 bg-gray-600"
           />
           <p className="text-red-500 font-bold text-xl">{errorMessage}</p>
           <button
             onClick={handleButtonClick}
-            className="w-full p-4 my-6 text-xl bg-blue-700 rounded-lg"
+            className="w-full p-3 my-6 text-xl font-bold bg-blue-700 rounded-lg text-white"
           >
             {isSignInForm ? "Sign In" : "Sign Up"}
           </button>
           <p
-            className="cursor-pointer p-4 font-bold text-blue-300"
+            className="cursor-pointer p-3 text-lg hover:underline text-blue-300"
             onClick={toggleSignInForm}
           >
             {isSignInForm
@@ -147,7 +146,7 @@ const Login = () => {
           </p>
         </form>
       </main>
-      <Footer />
+
 
       {showDisclaimer && (
         <DisclaimerPopup onContinue={() =>{

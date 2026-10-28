@@ -15,27 +15,31 @@ const UserIcon = () => {
     try {
       await signOut(auth);
       //signout success
-    } catch(error) {
+    } catch (error) {
       console.log(error);
     }
   };
 
-  //https://tse3.mm.bing.net/th/id/OIP.kYYbdJhBIh1SEi8MKTPYpgHaHa?r=0&pid=Api&h=220&P=0 => the URL of netflix user profilepic
   return (
     <div className="relative justify-items-end pr-10 t-5">
       {
-      //If user exists but photoURL is null, the image element will still render. If you want to handle that too, you can use user?.photoURL
-      user?.photoURL && (
-        <img
-          src={user.photoURL}
-          alt="user-icon"
-          className="w-8 cursor-pointer rounded-sm"
-          onClick={handleIconClick}
-        />
-      )}
+        //If user exists but photoURL is null, the image element will still render. If you want to handle that too, you can use user?.photoURL
+        user?.photoURL && (
+          <div className="flex cursor-pointer items-center" onClick={handleIconClick}>
+            <img
+              src={user.photoURL}
+              alt="user-icon"
+              className="w-8 rounded-sm"
+              
+            />
+            {/* SVG Copied from lucide react site */}
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="white" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" class="lucide lucide-chevron-down preview-icon"><path d="m6 9 6 6 6-6"/></svg>
+          </div>
+        )
+      }
       {isIconClicked ? (
         <div
-          className="absolute right-20 top-7 bg-black rounded-sm text-white p-2 font-bold whitespace-nowrap cursor-pointer"
+          className="absolute right-20 top-10 bg-black rounded-sm text-white p-2 font-bold whitespace-nowrap cursor-pointer"
           onClick={handleSignout}
         >
           Sign Out
