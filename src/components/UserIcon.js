@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useSelector } from "react-redux";
+import { ChevronDown,LogOut } from "lucide-react";
+
 
 const UserIcon = () => {
   const user = useSelector((store) => store.user);
@@ -32,16 +34,16 @@ const UserIcon = () => {
               className="w-8 rounded-sm"
               
             />
-            {/* SVG Copied from lucide react site */}
-            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="white" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" class="lucide lucide-chevron-down preview-icon"><path d="m6 9 6 6 6-6"/></svg>
+            <ChevronDown size={24} color="white"/>
           </div>
         )
       }
       {isIconClicked ? (
         <div
-          className="absolute right-20 top-10 bg-black rounded-sm text-white p-2 font-bold whitespace-nowrap cursor-pointer"
+          className="absolute right-20 top-10 flex items-center gap-2 bg-black rounded-sm text-white p-2 font-bold whitespace-nowrap cursor-pointer"
           onClick={handleSignout}
         >
+          <LogOut size={18} />
           Sign Out
         </div>
       ) : (
