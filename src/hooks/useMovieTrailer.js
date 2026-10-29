@@ -14,7 +14,6 @@ const useMovieTrailer = (movieId) => {
     //Handling the case if there is no trailer video for that movie
     const trailer = filteredTrailers.length? filteredTrailers[0] : json.results[0];
     dispatch(addTrailerVideo(trailer));
-    console.log(trailer);
   }
   useEffect(()=>{
     getMovieVideos();

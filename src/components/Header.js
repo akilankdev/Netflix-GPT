@@ -39,7 +39,7 @@ const Header = ({showUserIcon}) => {
       return unsubscribe;
     }, [dispatch,navigate]);
   return (
-    <div className="absolute w-screen z-10 px-8 py-5 bg-gradient-to-b from-black flex justify-between">
+    <div className="absolute w-full z-10 px-8 py-5 bg-gradient-to-b from-black flex justify-between">
       <img src="/STREAMGPTlogo.png" alt="netflix-logo" className="w-44"></img>
       {showUserIcon? <UserIcon /> : ""}
     </div>

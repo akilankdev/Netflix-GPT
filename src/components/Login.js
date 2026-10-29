@@ -39,6 +39,7 @@ const Login = () => {
     setErrorMessage(message);
     //if email or pw input is not valid then dont run SignIn or SignUp logic.
     if (message) {
+      //stops loading spinner
       setIsLoading(false);
       return;
     }
@@ -71,6 +72,8 @@ const Login = () => {
       } catch (error) {
         // Handle errors from either Firebase operation
         setErrorMessage(error.message);
+      } finally {
+        setIsLoading(false);
       }
     } else {
       //Sign In logic

@@ -7,7 +7,7 @@ import SecondaryContainer from "./SecondaryContainer";
 const Browse = () => {
   useNowPlayingMovies();
   return (
-    <div className="flex justify-between">
+    <div className="">
       <Header showUserIcon={true} />
       <MainContainer />
       <SecondaryContainer />
