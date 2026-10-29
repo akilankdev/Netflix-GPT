@@ -7,4 +7,4 @@ export const API_OPTIONS = {
   //in Authorization we should use our API ACCESS TOKEN from tmdb user account.Just paste it after 'bearer'.
   headers: {accept: 'application/json', Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2OGQwODJlNDliOTBhNmFlZTkzMmI1YjcyZjcxOGViMSIsIm5iZiI6MTc5Mjk5OTY5Mi40NzksInN1YiI6IjZhZGYwMTBjYTBhZDAyYjlkY2UxZTQ2NCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3q31ZKekMRig9aQPcYozKTf8ta67yfetmHw99vFvWJ4'}
 };
-export const MOVIE_POSTER_URL = "https://image.tmdb.org/t/p/w500/";
+export const MOVIE_POSTER_URL = "https://image.tmdb.org/t/p/w200/";

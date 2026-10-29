@@ -1,8 +1,9 @@
-import React from 'react'
 
-const MovieCard = () => {
+import { MOVIE_POSTER_URL } from '../utils/constants'
+
+const MovieCard = ({name,posterPath}) => {
   return (
-    <div>Movie card...</div>
+    <div><img src={MOVIE_POSTER_URL + posterPath} alt={name + "-movie-image"}/></div>
   )
 }
 

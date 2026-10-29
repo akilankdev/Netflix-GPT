@@ -1,4 +1,4 @@
-import React from 'react'
+
 import MovieCard from './MovieCard'
 
 const MovieList = ({title,movies}) => {
@@ -6,7 +6,7 @@ const MovieList = ({title,movies}) => {
     <div>
       <div>
         <h1>{title}</h1>
-        <MovieCard />
+        <MovieCard name={movies[0].title} posterPath={movies[0].poster_path}/>
       </div>
     </div>
   )
