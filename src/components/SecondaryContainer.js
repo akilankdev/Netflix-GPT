@@ -5,9 +5,8 @@ import { useSelector } from "react-redux";
 const SecondaryContainer = () => {
   const movies = useSelector((store) => store.movies);
   
-  const nowPlayingMovies = movies?.nowPlayingMovies;
-  const ratedMovies = movies?.ratedMovies;
-  const popularMovies = movies?.popularMovies;
+  const {nowPlayingMovies,ratedMovies,popularMovies,upcomingMovies } = movies;
+  
   return (
     <div className="bg-black px-2">
       {/* Initially movies is null,It will give ERROR so thats why below condition is used */}
@@ -17,6 +16,7 @@ const SecondaryContainer = () => {
           <MovieList title="Now Playing" movies={nowPlayingMovies} />
           <MovieList title="Top Rated" movies={ratedMovies} />
           <MovieList title="Popular Movies" movies={popularMovies} />
+          <MovieList title="Upcoming Movies" movies={upcomingMovies} />
         </div>
       )}
     </div>
