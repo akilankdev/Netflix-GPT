@@ -5,12 +5,15 @@ import SecondaryContainer from "./SecondaryContainer";
 import useRatedMovies from "../hooks/useRatedMovies";
 import usePopularMovies from "../hooks/usePopularMovies";
 import useUpcomingMovies from "../hooks/useUpcomingMovies";
+import useRatedShows from "../hooks/useRatedShows";
 
 const Browse = () => {
   useNowPlayingMovies();
   useRatedMovies();
   usePopularMovies();
   useUpcomingMovies();
+  //TV shows
+  useRatedShows();
   return (
     <div className="">
       <Header showUserIcon={true} />
