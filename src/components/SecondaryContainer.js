@@ -12,14 +12,14 @@ const SecondaryContainer = () => {
   return (
     <div className="bg-black px-2">
       {/* Initially movies is null,It will give ERROR so thats why below condition is used */}
-      {nowPlayingMovies && ratedMovies && popularMovies && upcomingMovies && ratedShows && (
+      {popularMovies  && (
         //-mt will make the element move upper.
         <div className="-mt-40 pl-8 relative z-10">
-          <MovieList title="Now Playing" movies={nowPlayingMovies} />
-          <MovieList title="Top Rated" movies={ratedMovies} />
+          <MovieList title="Popular" movies={popularMovies} />
+          {/* <MovieList title="Top Rated" movies={ratedMovies} />
           <MovieList title="Popular Movies" movies={popularMovies} />
           <MovieList title="Upcoming Movies" movies={upcomingMovies} />
-          <MovieList title="Rated Shows" movies={ratedShows} />
+          <MovieList title="Rated Shows" movies={ratedShows} /> */}
 
         </div>
       )}
