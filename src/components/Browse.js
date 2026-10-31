@@ -8,12 +8,11 @@ import useUpcomingMovies from "../hooks/useUpcomingMovies";
 import useRatedShows from "../hooks/useRatedShows";
 
 const Browse = () => {
-  // useNowPlayingMovies();
-  // useRatedMovies();
+  useNowPlayingMovies();
+  useRatedMovies();
   usePopularMovies();
-  // useUpcomingMovies();
-  //TV shows
-  // useRatedShows();
+  useUpcomingMovies();
+  useRatedShows();
   return (
     <div className="">
       <Header showUserIcon={true} />

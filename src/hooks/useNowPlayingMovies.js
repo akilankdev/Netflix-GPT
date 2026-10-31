@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { addNowPlayingMovies } from "../utils/moviesSlice";
 import { useEffect } from "react";
+import { BACKEND_BASE_URL } from "../utils/constants";
 
 const useNowPlayingMovies = () => {
   //Fetch TMDB now playing API and update redux store
@@ -8,7 +9,7 @@ const useNowPlayingMovies = () => {
   const getNowPlayingMovies = async () => {
     try {
       const data = await fetch(
-        "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1",
+        BACKEND_BASE_URL + "/now-playing"
       );
       const json = await data.json();
       dispatch(addNowPlayingMovies(json.results));
