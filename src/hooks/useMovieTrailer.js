@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addTrailerVideo } from "../utils/moviesSlice";
+import { BACKEND_BASE_URL } from "../utils/constants";
 
 const useMovieTrailer = (movieId) => {
   //Fetch Movie trailer and updates redux store
@@ -8,7 +9,7 @@ const useMovieTrailer = (movieId) => {
   const getMovieVideos = async () => {
     try {
       const data = await fetch(
-        `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`,
+        BACKEND_BASE_URL + "/movie/"+ movieId +"/videos"
       );
       const json = await data.json();
       //Filtering the all the videos which are Trailers
