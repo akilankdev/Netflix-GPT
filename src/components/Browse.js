@@ -6,8 +6,11 @@ import useRatedMovies from "../hooks/useRatedMovies";
 import usePopularMovies from "../hooks/usePopularMovies";
 import useUpcomingMovies from "../hooks/useUpcomingMovies";
 import useRatedShows from "../hooks/useRatedShows";
+import GptSearch from "./GptSearch";
+import { useSelector } from "react-redux";
 
 const Browse = () => {
+  const viewGptSearch = useSelector((store) => store.gpt?.viewGptSearch);
   useNowPlayingMovies();
   useRatedMovies();
   usePopularMovies();
@@ -16,8 +19,16 @@ const Browse = () => {
   return (
     <div className="">
       <Header showUserIcon={true} />
-      <MainContainer />
-      <SecondaryContainer />
+      {
+      //This will toggle GPT search page and Main Page.
+      viewGptSearch ? (
+        <GptSearch />
+      ) : (
+        <>
+          <MainContainer />
+          <SecondaryContainer />
+        </>
+      )}
     </div>
   );
 };
