@@ -146,7 +146,7 @@ const Login = () => {
           <button
             onClick={handleButtonClick}
             disabled={isLoading}
-            className="w-full p-3 my-6 text-xl font-bold bg-blue-700 rounded-lg text-white flex items-center gap-2 justify-center"
+            className="w-full p-3 my-6 text-xl bg-red-600 hover:bg-red-900 rounded-lg text-white flex items-center gap-2 justify-center"
           >
             {isSignInForm ? "Sign In" : "Sign Up"}
             {isLoading && <LoaderCircle size={16} className="animate-spin" />}

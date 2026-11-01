@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addUser, removeUser } from '../utils/userSlice';
 import { auth } from '../utils/firebase';
+import { NETFLIX_LOGO } from '../utils/constants';
 
 const Header = ({showUserIcon}) => {
     const dispatch = useDispatch();
@@ -40,7 +41,7 @@ const Header = ({showUserIcon}) => {
     }, [dispatch,navigate]);
   return (
     <div className="absolute w-full z-10 px-8 py-5 bg-gradient-to-b from-black flex justify-between">
-      <img src="/STREAMGPTlogo.png" alt="netflix-logo" className="w-44"></img>
+      <img src={NETFLIX_LOGO} alt="netflix-logo" className="w-44"></img>
       {showUserIcon? <UserIcon /> : ""}
     </div>
   )
