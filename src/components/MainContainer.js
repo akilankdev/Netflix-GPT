@@ -5,20 +5,17 @@ import VideoTitle from "./VideoTitle";
 
 
 const MainContainer = () => {
-  const movies = useSelector((store)=> store.movies?.nowPlayingMovies);
-
-  if(!movies) return;
-
-  const mainMovie = movies[0];
-  const {original_title,overview,id} = mainMovie;
+  const showDetails = useSelector((store)=> store.shows?.brbaShowDetails);
+  
+  if(!showDetails) return;
 
   return (
 //relative — establishes a positioning context for the overlapping elements.
 // h-screen — sets the section's height to the viewport height (100vh).
 // overflow-hidden — clips content that extends beyond the section's boundaries.
     <div className='overflow-hidden h-screen relative'>
-      <VideoTitle title={original_title} overview={overview}/>
-      <VideoBackground movieId={id}/>
+      <VideoTitle title={showDetails.original_name} overview={showDetails.overview}/>
+      <VideoBackground showId={showDetails.id}/>
     </div>
   )
 }

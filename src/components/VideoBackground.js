@@ -1,12 +1,10 @@
 
 import { useSelector } from 'react-redux';
-
-import useMovieTrailer from '../hooks/useMovieTrailer';
-const VideoBackground = ({movieId}) => {
+import useShowTrailer from '../hooks/useShowTrailer';
+const VideoBackground = ({showId}) => {
   //Must use optional chaining
-  const trailerKey = useSelector((store)=> store.movies.trailerVideo?.key);
-  //Custom hook to handle fetching data and update redux
-  useMovieTrailer(movieId);
+  const trailerKey = useSelector((store)=> store.shows.trailerVideo?.key);
+  useShowTrailer(showId);
   return (
     <div className="">
       {/* Copied from Youtube embed */}

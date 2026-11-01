@@ -8,6 +8,7 @@ import useUpcomingMovies from "../hooks/useUpcomingMovies";
 import useRatedShows from "../hooks/useRatedShows";
 import GptSearch from "./GptSearch";
 import { useSelector } from "react-redux";
+import useBreakingBadDetails from "../hooks/useBreakingBadDetails";
 
 const Browse = () => {
   const viewGptSearch = useSelector((store) => store.gpt?.viewGptSearch);
@@ -16,6 +17,7 @@ const Browse = () => {
   usePopularMovies();
   useUpcomingMovies();
   useRatedShows();
+  useBreakingBadDetails();
   return (
     <div className="">
       <Header showUserIcon={true} />
