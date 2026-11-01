@@ -22,7 +22,7 @@ const DisclaimerPopup = ({ onContinue }) => {
 
         <button
           onClick={onContinue}
-          className="mt-6 w-full rounded-lg bg-red-600 hover:bg-blue-600 p-3 font-semibold transition-colors"
+          className="mt-6 w-full rounded-lg bg-red-600 hover:bg-red-800 p-3 font-semibold transition-colors"
         >
           I Understand — Continue
         </button>

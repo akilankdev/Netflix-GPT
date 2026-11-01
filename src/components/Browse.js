@@ -6,9 +6,9 @@ import useRatedMovies from "../hooks/useRatedMovies";
 import usePopularMovies from "../hooks/usePopularMovies";
 import useUpcomingMovies from "../hooks/useUpcomingMovies";
 import useRatedShows from "../hooks/useRatedShows";
-import GptSearch from "./GptSearch";
+import GptSearchPage from "./GptSearchPage";
 import { useSelector } from "react-redux";
-import useBreakingBadDetails from "../hooks/useBreakingBadDetails";
+import useShowDetails from "../hooks/useShowDetails";
 
 const Browse = () => {
   const viewGptSearch = useSelector((store) => store.gpt?.viewGptSearch);
@@ -17,14 +17,14 @@ const Browse = () => {
   usePopularMovies();
   useUpcomingMovies();
   useRatedShows();
-  useBreakingBadDetails();
+  useShowDetails();
   return (
     <div className="">
       <Header showUserIcon={true} />
       {
       //This will toggle GPT search page and Main Page.
       viewGptSearch ? (
-        <GptSearch />
+        <GptSearchPage />
       ) : (
         <>
           <MainContainer />

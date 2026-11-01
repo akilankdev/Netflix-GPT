@@ -6,3 +6,7 @@ export const NETFLIX_USER_AVATAR = "https://tse3.mm.bing.net/th/id/OIP.kYYbdJhBI
 export const MOVIE_POSTER_URL = "https://image.tmdb.org/t/p/w200/";
 
 export const BACKEND_BASE_URL = "https://tmdb-proxy-ydu6.onrender.com";
+//1396 is the ID for Breaking bad.Use it for fetching show details.
+export const BRBA_SHOW_ID = 1396;
+export const PEAKYB_SHOW_ID = 60574;
+export const GOT_SHOW_ID = 1399;
