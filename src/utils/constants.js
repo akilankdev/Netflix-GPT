@@ -11,3 +11,15 @@ export const BACKEND_BASE_URL = "https://tmdb-proxy-ydu6.onrender.com";
 export const BRBA_SHOW_ID = 1396;
 export const PEAKYB_SHOW_ID = 60574;
 export const GOT_SHOW_ID = 1399;
+
+//This is used in <option> in <select> dropdown in Header.js
+export const LANG_CONFIG = [
+  {
+    identifier: "en",
+    name: "English",
+  },
+  {
+    identifier: "tamil",
+    name: "Tamil",
+  },
+];

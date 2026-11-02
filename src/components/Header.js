@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addUser, removeUser } from "../utils/userSlice";
 import { auth } from "../utils/firebase";
-import { NETFLIX_LOGO } from "../utils/constants";
+import { LANG_CONFIG, NETFLIX_LOGO } from "../utils/constants";
 import { toggleGptSearchPage } from "../utils/gptSlice";
 
 const Header = ({ showOtherHeaderElements }) => {
@@ -41,6 +41,9 @@ const Header = ({ showOtherHeaderElements }) => {
     //return in useEffect always run when the component unmounts
     return unsubscribe;
   }, [dispatch, navigate]);
+
+
+
   return (
     <div className="absolute w-full z-10 px-8 py-5 bg-gradient-to-b from-black flex justify-between">
       <img src={NETFLIX_LOGO} alt="netflix-logo" className="w-44"></img>
@@ -48,9 +51,8 @@ const Header = ({ showOtherHeaderElements }) => {
         {showOtherHeaderElements ? (
           <>
             {viewGptSearch && (
-              <select className="mr-2 px-2 h-[68%] rounded-md bg-gray-600 text-white">
-                <option>English</option>
-                <option>Tamil</option>
+              <select className="mr-2 px-2 h-[68%] rounded-md bg-gray-600 text-white" onChange={(e)=> console.log(e.target.value)}>
+                {LANG_CONFIG.map((language) => <option key={language.identifier} value={language.identifier}>{language.name}</option>)}
               </select>
             )}
             <div className="flex items-center">
