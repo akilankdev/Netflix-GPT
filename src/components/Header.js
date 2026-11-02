@@ -7,6 +7,7 @@ import { addUser, removeUser } from "../utils/userSlice";
 import { auth } from "../utils/firebase";
 import { LANG_CONFIG, NETFLIX_LOGO } from "../utils/constants";
 import { toggleGptSearchPage } from "../utils/gptSlice";
+import { changeLanguage } from "../utils/userConfigSlice";
 
 const Header = ({ showOtherHeaderElements }) => {
   const dispatch = useDispatch();
@@ -51,7 +52,7 @@ const Header = ({ showOtherHeaderElements }) => {
         {showOtherHeaderElements ? (
           <>
             {viewGptSearch && (
-              <select className="mr-2 px-2 h-[68%] rounded-md bg-gray-600 text-white" onChange={(e)=> console.log(e.target.value)}>
+              <select className="mr-2 px-2 h-[68%] rounded-md bg-gray-600 text-white" onChange={(e)=> dispatch(changeLanguage(e.target.value))}>
                 {LANG_CONFIG.map((language) => <option key={language.identifier} value={language.identifier}>{language.name}</option>)}
               </select>
             )}
