@@ -1,49 +1,73 @@
-import React, { useEffect } from 'react'
-import UserIcon from './UserIcon'
-import { onAuthStateChanged } from 'firebase/auth';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { addUser, removeUser } from '../utils/userSlice';
-import { auth } from '../utils/firebase';
-import { NETFLIX_LOGO } from '../utils/constants';
+import React, { useEffect } from "react";
+import UserIcon from "./UserIcon";
+import { onAuthStateChanged } from "firebase/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { addUser, removeUser } from "../utils/userSlice";
+import { auth } from "../utils/firebase";
+import { NETFLIX_LOGO } from "../utils/constants";
+import { toggleGptSearchPage } from "../utils/gptSlice";
 
-const Header = ({showUserIcon}) => {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    useEffect(() => {
-      const unsubscribe = onAuthStateChanged(auth, (user) => {
-        if (user) {
-          // User is signed in, see docs for a list of available properties
-          // https://firebase.google.com/docs/reference/js/auth.user
-          const { uid, email, displayName, photoURL } = user;
-          dispatch(
-            addUser({
-              uid: uid,
-              email: email,
-              displayName: displayName,
-              photoURL: photoURL,
-            }),
-          );
-          navigate("/browse");
-        } else {
-          // User is signed out
-          //you should include [dispatch] because:
-          //- It removes the ESLint warning.
-          // - It follows React's dependency rules.
-          // - It remains correct if the dispatch reference ever changes, such as if the Redux store is replaced.
-          dispatch(removeUser());
-          navigate("/");
-        }
-      });
-      //returning unsubscribe cleans up the Firebase authentication listener when the component unmounts. This is good practice and helps prevent duplicate listeners.
-      //return in useEffect always run when the component unmounts
-      return unsubscribe;
-    }, [dispatch,navigate]);
+const Header = ({ showOtherHeaderElements }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const viewGptSearch = useSelector((store) => store.gpt?.viewGptSearch);
+  const handleGptSearchClick = () => {
+    //navigates btw search page and main page
+    dispatch(toggleGptSearchPage());
+  };
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/auth.user
+        const { uid, email, displayName, photoURL } = user;
+        dispatch(
+          addUser({
+            uid: uid,
+            email: email,
+            displayName: displayName,
+            photoURL: photoURL,
+          }),
+        );
+        navigate("/browse");
+      } else {
+        // User is signed out
+        dispatch(removeUser());
+        navigate("/");
+      }
+    });
+    //returning unsubscribe cleans up the Firebase authentication listener when the component unmounts. This is good practice and helps prevent duplicate listeners.
+    //return in useEffect always run when the component unmounts
+    return unsubscribe;
+  }, [dispatch, navigate]);
   return (
     <div className="absolute w-full z-10 px-8 py-5 bg-gradient-to-b from-black flex justify-between">
       <img src={NETFLIX_LOGO} alt="netflix-logo" className="w-44"></img>
-      {showUserIcon? <UserIcon /> : ""}
+      <div className="flex items-center">
+        {showOtherHeaderElements ? (
+          <>
+            {viewGptSearch && (
+              <select className="mr-2 px-2 h-[68%] rounded-md bg-gray-600 text-white">
+                <option>English</option>
+                <option>Tamil</option>
+              </select>
+            )}
+            <div className="flex items-center">
+              <button
+                onClick={handleGptSearchClick}
+                className="bg-orange-500 text-white px-3 py-1 m-2 rounded-md mr-6"
+              >
+                {viewGptSearch ? "Back to Home" : "GPT Search"}
+              </button>{" "}
+              <UserIcon />{" "}
+            </div>
+          </>
+        ) : (
+          ""
+        )}
+      </div>
     </div>
-  )
-}
-export default Header
+  );
+};
+export default Header;

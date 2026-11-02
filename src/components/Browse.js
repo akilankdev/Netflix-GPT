@@ -20,7 +20,7 @@ const Browse = () => {
   useShowDetails();
   return (
     <div className="">
-      <Header showUserIcon={true} />
+      <Header showOtherHeaderElements={true} />
       {
       //This will toggle GPT search page and Main Page.
       viewGptSearch ? (

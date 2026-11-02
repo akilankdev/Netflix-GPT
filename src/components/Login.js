@@ -99,7 +99,7 @@ const Login = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header showUserIcon={false} />
+      <Header showOtherHeaderElements={false} />
       <main className="flex-1 relative">
         <div className="absolute inset-0">
           <img

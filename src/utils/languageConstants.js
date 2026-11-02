@@ -5,7 +5,7 @@ const lang = {
   },
   tamil: {
     gptSearchText: "தேடு",
-    gptSearchPlaceholder: "நீங்கள் எதைப் பார்க்க விரும்புகிறீர்கள்?",
+    gptSearchPlaceholder: "நீங்கள் என்ன பார்க்க விரும்புகிறீர்கள்?",
   },
 }
 export default lang;
