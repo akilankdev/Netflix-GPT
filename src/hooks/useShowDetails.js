@@ -11,7 +11,7 @@ const useShowDetails = () => {
     const json = await data.json();
     dispatch(addBrbaShowDetails(json));
     } catch(error) {
-      console.log(error.message);
+      console.error(error.message);
     }
   }
   useEffect(()=>{

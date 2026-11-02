@@ -12,7 +12,7 @@ const useUpcomingMovies = () => {
       const json = await data.json();
       dispatch(addUpcomingMovies(json.results));
     } catch (error) {
-      console.log(error.message);
+      console.error(error.message);
     }
   };
   useEffect(() => {

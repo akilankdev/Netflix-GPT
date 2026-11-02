@@ -13,7 +13,7 @@ const useRatedShows = () => {
       const json = await data.json();
       dispatch(addRatedShows(json.results));
     } catch (error) {
-      console.log(error.message);
+      console.error(error.message);
     }
   };
   useEffect(() => {

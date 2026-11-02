@@ -22,7 +22,7 @@ const useMovieTrailer = (movieId) => {
         : json.results[0];
       dispatch(addTrailerVideo(trailer));
     } catch (error) {
-      console.log(error.message);
+      console.error(error.message);
     }
   };
   useEffect(() => {

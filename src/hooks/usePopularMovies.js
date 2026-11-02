@@ -12,7 +12,7 @@ const usePopularMovies = () => {
       const json = await data.json();
       dispatch(addPopularMovies(json.results));
     } catch (error) {
-      console.log(error.message);
+      console.error(error.message);
     }
   };
   useEffect(() => {

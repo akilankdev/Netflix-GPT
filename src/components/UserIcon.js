@@ -19,7 +19,7 @@ const UserIcon = () => {
       await signOut(auth);
       //signout success
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

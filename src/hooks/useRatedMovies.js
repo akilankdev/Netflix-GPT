@@ -15,7 +15,7 @@ const useRatedMovies = () => {
       const json = await data.json();
       dispatch(addRatedMovies(json.results));
     } catch (error) {
-      console.log(error.message);
+      console.error(error.message);
     }
   };
   useEffect(() => {

@@ -14,7 +14,7 @@ const useNowPlayingMovies = () => {
       const json = await data.json();
       dispatch(addNowPlayingMovies(json.results));
     } catch (error) {
-      console.log(error.message);
+      console.error(error.message);
     }
   };
   useEffect(() => {

@@ -3,11 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 const userConfigSlice = createSlice({
   name: "userConfig",
   initialState: {
-    lang: "en",
+    langValue: "en",
   },
   reducers: {
     changeLanguage: (state,action) => {
-      state.lang = action.payload;
+      state.langValue = action.payload;
     },
   },
 });
