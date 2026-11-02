@@ -1,3 +1,5 @@
+import lang from "../utils/languageConstants";
+
 const GptSearchBar = () => {
   return (
     <div className="pt-[8%] flex justify-center">
@@ -5,9 +7,9 @@ const GptSearchBar = () => {
         <input
           type="type"
           className="p-3 m-4 col-span-9"
-          placeholder="What would you like to watch?"
+          placeholder={lang.tamil.gptSearchPlaceholder}
         ></input>
-        <button className="col-span-3 py-2 px-3 m-4 text-lg bg-red-700 text-white rounded-md">Search</button>
+        <button className="col-span-3 py-2 px-3 m-4 text-lg bg-red-700 text-white rounded-md">{lang.tamil.gptSearchText}</button>
       </form>
     </div>
   );
