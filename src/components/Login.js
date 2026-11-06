@@ -12,9 +12,11 @@ import { addUser } from "../utils/userSlice";
 import DisclaimerPopup from "./DisclaimerPopup";
 import { NETFLIX_USER_AVATAR } from "../utils/constants";
 import { LogIn, UserRoundPlus, LoaderCircle } from "lucide-react";
+import useGeminiRecommendations from "../hooks/useGeminiRecommendations";
 
 const Login = () => {
   //Loading spinner state
+  useGeminiRecommendations();
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   //sessionStorage is used to prevent the disclaimer from showing again until the tab closes,shows the disclaimer if we open new tab
