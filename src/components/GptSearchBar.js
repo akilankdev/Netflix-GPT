@@ -1,16 +1,13 @@
 import { useSelector } from "react-redux";
 import lang from "../utils/languageConstants";
 import { useRef } from "react";
-import useGeminiRecommendations from "../hooks/useGeminiRecommendations";
 
-const GptSearchBar = () => {
+const GptSearchBar = ({loading,fetchGeminiRecommendations}) => {
   const langKey = useSelector((store)=> store.userConfig.langValue);
-  const {fetchGeminiRecommendations,loading} = useGeminiRecommendations();
   const searchText = useRef(null);
   const handleClick = () => {
     fetchGeminiRecommendations(searchText.current.value);
   }
-
   return (
     <div className="pt-[8%] flex justify-center">
       <form className="w-1/2 bg-black grid grid-cols-12" onSubmit={(e)=>e.preventDefault()}>

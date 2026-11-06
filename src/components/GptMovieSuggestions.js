@@ -1,7 +1,21 @@
 import { useSelector } from "react-redux";
 import MovieList from "./MovieList";
-const GptMovieSuggestions = () => {
+const GptMovieSuggestions = ({ loading }) => {
   const recommendations = useSelector((store) => store.gpt?.recommendations);
+  if (loading) {
+    return (
+      <div className="bg-black bg-opacity-80 text-white mx-20 p-10">
+          <h2 className="text-4xl text-red-600">Gemini Recommendations</h2>  
+              <div className="">
+                {/* Shimmer goes here */}
+                <p>dshfkashfsfwfhlahflkhfhfhklfhfhfhlfh</p>
+                <p>dshfkashfsfwfhlahflkhfhfhklfhfhfhlfh</p>
+                <p>dshfkashfsfwfhlahflkhfhfhklfhfhfhlfh</p>
+                <p>dshfkashfsfwfhlahflkhfhfhklfhfhfhlfh</p>
+              </div>
+      </div>
+    );
+  }
   return (
     <div className="bg-black bg-opacity-80 text-white mx-20 p-10">
       {recommendations && (
@@ -21,7 +35,10 @@ const GptMovieSuggestions = () => {
             //if there is no movie results,then just show the title only
             <div className="" key={movieGroup.geminiTitle}>
               <h1 className="text-2xl py-4">{movieGroup.geminiTitle}</h1>
-              <p className="text-orange-500 ">Sorry, we couldn't retrieve movie details for this recommendation.</p>
+              <p className="text-orange-500 ">
+                Sorry, we couldn't retrieve movie details for this
+                recommendation.
+              </p>
             </div>
           ),
         )}
