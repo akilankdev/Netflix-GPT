@@ -1,10 +1,13 @@
+import { useState } from "react";
 import { BACKEND_BASE_URL } from "../utils/constants";
 import { addRecommendations } from "../utils/gptSlice";
 import { useDispatch } from "react-redux";
 const useGeminiRecommendations = () => {
+  const [loading,setLoading] = useState(false);
   const dispatch = useDispatch();
   const fetchGeminiRecommendations = async (prompt) => {
     try {
+      setLoading(true);
       const response = await fetch(
         `${BACKEND_BASE_URL}/gemini-recommendations`,
         {
@@ -27,9 +30,11 @@ const useGeminiRecommendations = () => {
       dispatch(addRecommendations(json));
     } catch (error) {
       console.error("Error occurred: " + error.message);
+    } finally {
+      setLoading(false);
     }
   };
-  return fetchGeminiRecommendations;
+  return {loading,fetchGeminiRecommendations};
 };
 
 export default useGeminiRecommendations;

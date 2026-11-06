@@ -5,7 +5,7 @@ import useGeminiRecommendations from "../hooks/useGeminiRecommendations";
 
 const GptSearchBar = () => {
   const langKey = useSelector((store)=> store.userConfig.langValue);
-  const fetchGeminiRecommendations = useGeminiRecommendations();
+  const {fetchGeminiRecommendations,loading} = useGeminiRecommendations();
   const searchText = useRef(null);
   const handleClick = () => {
     fetchGeminiRecommendations(searchText.current.value);
@@ -21,8 +21,8 @@ const GptSearchBar = () => {
           placeholder={lang[langKey].gptSearchPlaceholder}
 
         ></input>
-        <button className="col-span-3 py-2 px-3 m-4 text-lg bg-red-700 text-white rounded-md" onClick={handleClick}>{lang[langKey].gptSearchText}</button>
-      </form>
+        <button className="col-span-3 py-2 px-3 m-4 text-lg bg-red-700 text-white rounded-md" disabled={loading} onClick={handleClick}>{loading ? "Generating...": lang[langKey].gptSearchText }</button>
+      </form>               
     </div>
   );
 };
