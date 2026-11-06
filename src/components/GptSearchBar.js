@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import lang from "../utils/languageConstants";
 import { useRef } from "react";
+import {LoaderCircle} from 'lucide-react';
 
 const GptSearchBar = ({loading,fetchGeminiRecommendations}) => {
   const langKey = useSelector((store)=> store.userConfig.langValue);
@@ -18,7 +19,7 @@ const GptSearchBar = ({loading,fetchGeminiRecommendations}) => {
           placeholder={lang[langKey].gptSearchPlaceholder}
 
         ></input>
-        <button className="col-span-3 py-2 px-3 m-4 text-lg bg-red-700 text-white rounded-md" disabled={loading} onClick={handleClick}>{loading ? "Generating...": lang[langKey].gptSearchText }</button>
+        <button className="col-span-3 py-2 px-3 m-4 text-lg bg-red-700 text-white rounded-md" disabled={loading} onClick={handleClick}>{loading ?<span className="flex justify-between items-center">{"Generating "}<LoaderCircle size={26} className="animate-spin" /></span>: lang[langKey].gptSearchText }</button>
       </form>               
     </div>
   );

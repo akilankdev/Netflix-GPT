@@ -1,23 +1,15 @@
 import { useSelector } from "react-redux";
 import MovieList from "./MovieList";
+import ShimmerGptSuggestions from "./ShimmerGptSuggestions";
 const GptMovieSuggestions = ({ loading }) => {
   const recommendations = useSelector((store) => store.gpt?.recommendations);
+  //shows shimmer if loading is true
   if (loading) {
-    return (
-      <div className="bg-black bg-opacity-80 text-white mx-20 p-10">
-          <h2 className="text-4xl text-red-600">Gemini Recommendations</h2>  
-              <div className="">
-                {/* Shimmer goes here */}
-                <p>dshfkashfsfwfhlahflkhfhfhklfhfhfhlfh</p>
-                <p>dshfkashfsfwfhlahflkhfhfhklfhfhfhlfh</p>
-                <p>dshfkashfsfwfhlahflkhfhfhklfhfhfhlfh</p>
-                <p>dshfkashfsfwfhlahflkhfhfhklfhfhfhlfh</p>
-              </div>
-      </div>
-    );
+    return <ShimmerGptSuggestions />;
   }
+  //otherwise render this element below
   return (
-    <div className="bg-black bg-opacity-80 text-white mx-20 p-10">
+    <div className="bg-black bg-opacity-90 rounded-3xl text-white mx-20 p-10 mt-4">
       {recommendations && (
         <h2 className="text-4xl text-red-600">Gemini Recommendations</h2>
       )}
