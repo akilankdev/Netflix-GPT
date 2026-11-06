@@ -4,12 +4,12 @@ import { NETFLIX_BG_IMAGE } from '../utils/constants'
 import useGeminiRecommendations from '../hooks/useGeminiRecommendations'
 
 const GptSearchPage = () => {
-  const {loading,fetchGeminiRecommendations} = useGeminiRecommendations();
+  const {loading,fetchGeminiRecommendations,error} = useGeminiRecommendations();
   return (
     <div >
       <div className='fixed -z-10'><img src={NETFLIX_BG_IMAGE} alt="Background-image "/></div>
       <GptSearchBar loading={loading} fetchGeminiRecommendations={fetchGeminiRecommendations}/>
-      <GptMovieSuggestions loading={loading}/>
+      <GptMovieSuggestions loading={loading} error={error}/>
     </div>
   )
 }
