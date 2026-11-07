@@ -21,8 +21,8 @@ const GptMovieSuggestions = ({ loading, error }) => {
   return (
     <>
       {recommendations && (
-        <div className="bg-black bg-opacity-90 rounded-3xl text-white mx-20 p-10 mt-4">
-          <h2 className="text-4xl text-red-600">Gemini Recommendations</h2>
+        <div className="bg-black bg-opacity-90 rounded-3xl text-white sm:mx-20 mx-3 p-3 sm:p-10 mt-4  sm:w-auto">
+          <h2 className="sm:text-4xl text-2xl  text-red-600">Gemini Recommendations</h2>
 
           {recommendations &&
             recommendations.movieGroups.map((movieGroup, index) =>

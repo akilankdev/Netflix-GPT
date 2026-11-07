@@ -4,10 +4,11 @@ const MovieCard = ({ name, posterPath }) => {
   return (
     <>
       {posterPath && (
-        <div className="w-36 shrink-0">
+        <div className="sm:w-36 shrink-0">
           <img
             src={MOVIE_POSTER_URL + posterPath}
             alt={name + "-movie-image"}
+            className="sm:w-auto w-24"
           />
         </div>
       )}

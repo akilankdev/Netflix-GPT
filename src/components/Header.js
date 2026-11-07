@@ -46,20 +46,20 @@ const Header = ({ showOtherHeaderElements }) => {
 
 
   return (
-    <div className="absolute w-full z-10 px-8 py-5 bg-gradient-to-b from-black flex justify-between">
-      <img src={NETFLIX_LOGO} alt="netflix-logo" className="w-44"></img>
-      <div className="flex items-center">
+    <div className="absolute w-full z-10 px-8 py-5 bg-gradient-to-b from-black flex justify-between flex-col sm:flex-row md:flex-row">
+      <img src={NETFLIX_LOGO} alt="netflix-logo" className="w-44 m-auto sm:m-2 py-3 sm:p-0"></img>
+      <div className="flex items-center justify-between sm:gap-1">
         {showOtherHeaderElements ? (
           <>
             {viewGptSearch && (
-              <select className="mr-2 px-2 h-[68%] rounded-md bg-gray-600 text-white" onChange={(e)=> dispatch(changeLanguage(e.target.value))}>
+              <select className="h-8 sm:mr-2 sm:px-2 sm:h-[50%] rounded-md bg-blue-600 text-white" onChange={(e)=> dispatch(changeLanguage(e.target.value))}>
                 {LANG_CONFIG.map((language) => <option key={language.identifier} value={language.identifier}>{language.name}</option>)}
               </select>
             )}
-            <div className="flex items-center">
+            <div className="flex items-center justify-between">
               <button
                 onClick={handleGptSearchClick}
-                className="bg-orange-500 text-white px-3 py-1 m-2 rounded-md mr-6"
+                className="bg-orange-500 text-white px-3 py-1 m-2 rounded-md mr-6 sm:mr-6"
               >
                 {viewGptSearch ? "Back to Home" : "GPT Search"}
               </button>{" "}

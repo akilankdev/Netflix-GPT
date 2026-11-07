@@ -26,7 +26,7 @@ const UserIcon = () => {
   
 
   return (
-    <div className="relative justify-items-end pr-10 t-5">
+    <div className="relative justify-items-end sm:pr-10 t-5">
       {
         //If user exists but photoURL is null, the image element will still render. If you want to handle that too, you can use user?.photoURL
         user?.photoURL && (
