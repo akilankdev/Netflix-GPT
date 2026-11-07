@@ -8,7 +8,7 @@ const MovieCard = ({ name, posterPath }) => {
           <img
             src={MOVIE_POSTER_URL + posterPath}
             alt={name + "-movie-image"}
-            className="sm:w-auto w-24"
+            className="sm:w-auto w-16"
           />
         </div>
       )}

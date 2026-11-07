@@ -6,7 +6,7 @@ const VideoBackground = ({ showId }) => {
 
   useShowTrailer(showId);
   return (
-    <div className="">
+    <div className="mt-[40%] sm:mt-0">
       {/* Copied from Youtube embed */}
       <iframe
         className="w-screen aspect-video"

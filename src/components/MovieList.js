@@ -3,7 +3,7 @@ import MovieCard from "./MovieCard";
 const MovieList = ({ title, movies }) => {
   return (
     <div className="p-1 text-white">
-      <h1 className="text-2xl py-4">{title}</h1>
+      <h1 className="sm:text-2xl text-xl py-4">{title}</h1>
       {/*pverflow-x-scroll adds x-axis scrolling for movie cards */}
       <div className="overflow-x-scroll hide-scrollbar">
         {/*flex makes the cards appear horizontally */}

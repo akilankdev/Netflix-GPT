@@ -19,7 +19,7 @@ const SecondaryContainer = () => {
         ratedMovies &&
         upcomingMovies && (
           //-mt will make the element move upper.
-          <div className="-mt-40 pl-8 relative z-10">
+          <div className="sm:-mt-40 sm:pl-8 pl-3 relative z-10">
             <MovieList title="Now Playing" movies={nowPlayingMovies} />
             <MovieList title="Top Rated" movies={ratedMovies} />
             <MovieList title="Popular Movies" movies={popularMovies} />

@@ -56,6 +56,7 @@ const Header = ({ showOtherHeaderElements }) => {
                 {LANG_CONFIG.map((language) => <option key={language.identifier} value={language.identifier}>{language.name}</option>)}
               </select>
             )}
+            {!viewGptSearch && <div className=""></div>}
             <div className="flex items-center justify-between">
               <button
                 onClick={handleGptSearchClick}
