@@ -10,6 +10,7 @@ import GptSearchPage from "./GptSearchPage";
 import { useSelector } from "react-redux";
 import useShowDetails from "../hooks/useShowDetails";
 import { PEAKYB_SHOW_ID } from "../utils/constants";
+import ShimmerBrowsePage from "./ShimmerBrowsePage";
 
 const Browse = () => {
   const viewGptSearch = useSelector((store) => store.gpt?.viewGptSearch);
@@ -19,6 +20,7 @@ const Browse = () => {
   useUpcomingMovies();
   useRatedShows();
   useShowDetails(PEAKYB_SHOW_ID);
+  return <ShimmerBrowsePage />
   return (
     <div className="">
       <Header showOtherHeaderElements={true} />

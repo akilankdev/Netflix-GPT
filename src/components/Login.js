@@ -111,8 +111,8 @@ const Login = () => {
         <form
           onSubmit={(e) => e.preventDefault()}
           className="relative z-10 max-w-96
-                mx-4 sm:mx-auto
-                bg-black/70 p-4 sm:p-10 rounded-lg mt-28"
+                mx-auto
+                bg-black/70 p-4 sm:p-10 rounded-lg sm:mt-28 mt-[50%]"
         >
           <h1 className="font-bold text-3xl mb-3 text-white flex items-center gap-4">
             {isSignInForm ? <LogIn size={25} /> : <UserRoundPlus size={25} />}
