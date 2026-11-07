@@ -1,9 +1,10 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addNowPlayingMovies } from "../utils/moviesSlice";
 import { useEffect } from "react";
 import { BACKEND_BASE_URL } from "../utils/constants";
 
 const useNowPlayingMovies = () => {
+  const nowPlayingMovies = useSelector(store=> store.movies.nowPlayingMovies);
   //Fetch TMDB now playing API and update redux store
   const dispatch = useDispatch();
   const getNowPlayingMovies = async () => {
@@ -18,7 +19,7 @@ const useNowPlayingMovies = () => {
     }
   };
   useEffect(() => {
-    getNowPlayingMovies();
+    !nowPlayingMovies && getNowPlayingMovies();
     // eslint-disable-next-line
   }, []);
 };

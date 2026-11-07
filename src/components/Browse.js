@@ -9,6 +9,7 @@ import useRatedShows from "../hooks/useRatedShows";
 import GptSearchPage from "./GptSearchPage";
 import { useSelector } from "react-redux";
 import useShowDetails from "../hooks/useShowDetails";
+import { PEAKYB_SHOW_ID } from "../utils/constants";
 
 const Browse = () => {
   const viewGptSearch = useSelector((store) => store.gpt?.viewGptSearch);
@@ -17,7 +18,7 @@ const Browse = () => {
   usePopularMovies();
   useUpcomingMovies();
   useRatedShows();
-  useShowDetails();
+  useShowDetails(PEAKYB_SHOW_ID);
   return (
     <div className="">
       <Header showOtherHeaderElements={true} />

@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 import { BACKEND_BASE_URL } from "../utils/constants";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addPopularMovies } from "../utils/moviesSlice";
 
 const usePopularMovies = () => {
+  const popularMovies = useSelector(store=> store.movies.popularMovies);
   const dispatch = useDispatch();
   const getPopularMovies = async () => {
     try {
@@ -16,7 +17,7 @@ const usePopularMovies = () => {
     }
   };
   useEffect(() => {
-    getPopularMovies();
+    !popularMovies && getPopularMovies();
     // eslint-disable-next-line
   }, []);
 };

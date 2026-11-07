@@ -7,6 +7,9 @@ const GptSearchBar = ({loading,fetchGeminiRecommendations}) => {
   const langKey = useSelector((store)=> store.userConfig.langValue);
   const searchText = useRef(null);
   const handleClick = () => {
+    const prompt = searchText.current.value.trim();
+    //if prompt is empty "" then dont make the req.
+    if(!prompt) return;
     fetchGeminiRecommendations(searchText.current.value);
   }
   return (

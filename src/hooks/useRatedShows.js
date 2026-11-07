@@ -1,9 +1,11 @@
 import { useEffect } from "react";
 import { BACKEND_BASE_URL } from "../utils/constants";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addRatedShows } from "../utils/showsSlice";
 
 const useRatedShows = () => {
+    const ratedShows = useSelector(store=> store.shows.ratedShows);
+
   const dispatch = useDispatch();
   const getRatedShows = async () => {
     try {
@@ -17,7 +19,7 @@ const useRatedShows = () => {
     }
   };
   useEffect(() => {
-    getRatedShows();
+    !ratedShows && getRatedShows();
     // eslint-disable-next-line
   }, []);
 };

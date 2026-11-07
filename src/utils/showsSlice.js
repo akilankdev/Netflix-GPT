@@ -6,7 +6,7 @@ const showsSlice = createSlice({
   name: "shows",
   initialState: {
     ratedShows: null,
-    brbaShowDetails: null,
+    showDetails: null,
     trailerVideo: null,
   },
   reducers: {
@@ -16,11 +16,11 @@ const showsSlice = createSlice({
     addTrailerVideo:(state,action) => {
       state.trailerVideo = action.payload;
     },
-    addBrbaShowDetails:(state,action) => {
-      state.brbaShowDetails = action.payload;
+    addShowDetails:(state,action) => {
+      state.showDetails = action.payload;
     }
   },
 });
 
-export const {addRatedShows,addTrailerVideo,addBrbaShowDetails} = showsSlice.actions;
+export const {addRatedShows,addTrailerVideo,addShowDetails} = showsSlice.actions;
 export default showsSlice.reducer;

@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addUpcomingMovies } from "../utils/moviesSlice";
 import { BACKEND_BASE_URL } from "../utils/constants";
 
 const useUpcomingMovies = () => {
+  const upcomingMovies = useSelector(store=> store.movies.upcomingMovies);
   const dispatch = useDispatch();
   const getUpcomingMovies = async () => {
     try {
@@ -16,7 +17,7 @@ const useUpcomingMovies = () => {
     }
   };
   useEffect(() => {
-    getUpcomingMovies();
+    !upcomingMovies && getUpcomingMovies();
     // eslint-disable-next-line
   }, []);
 };

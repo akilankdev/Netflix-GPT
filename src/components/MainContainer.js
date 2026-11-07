@@ -5,7 +5,7 @@ import VideoTitle from "./VideoTitle";
 
 
 const MainContainer = () => {
-  const showDetails = useSelector((store)=> store.shows?.brbaShowDetails);
+  const showDetails = useSelector((store)=> store.shows?.showDetails);
   
   if(!showDetails) return;
 

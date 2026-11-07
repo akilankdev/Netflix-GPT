@@ -1,9 +1,10 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BACKEND_BASE_URL } from "../utils/constants";
 import { addTrailerVideo } from "../utils/showsSlice";
 
 const useShowTrailer = (showId) => {
+  const trailerVideo = useSelector(store=> store.shows.trailerVideo);
   //Fetch Movie trailer and updates redux store
   const dispatch = useDispatch();
   const getShowVideos = async () => {
@@ -26,7 +27,7 @@ const useShowTrailer = (showId) => {
     }
   };
   useEffect(() => {
-    getShowVideos();
+    !trailerVideo && getShowVideos();
     // eslint-disable-next-line
   }, []);
 };
