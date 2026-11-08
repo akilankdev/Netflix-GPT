@@ -19,8 +19,8 @@ const Browse = () => {
   usePopularMovies();
   useUpcomingMovies();
   useRatedShows();
-  useShowDetails(PEAKYB_SHOW_ID);
-  return <ShimmerBrowsePage />
+  const loading = useShowDetails(PEAKYB_SHOW_ID);
+  if(loading) return <ShimmerBrowsePage />;
   return (
     <div className="">
       <Header showOtherHeaderElements={true} />
