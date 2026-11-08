@@ -4,7 +4,7 @@ import { MOVIE_POSTER_URL } from "../utils/constants";
 const MovieCard = ({ name, posterPath, movieId }) => {
   const navigate = useNavigate();
   const handleCardClick =() => {
-    navigate(`/movie/:${movieId}`);
+    navigate(`/movie/${movieId}`);
   }
   return (
     <>
