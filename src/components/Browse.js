@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 import useShowDetails from "../hooks/useShowDetails";
 import { PEAKYB_SHOW_ID } from "../utils/constants";
 import ShimmerBrowsePage from "./ShimmerBrowsePage";
+import useMovieDetails from "../hooks/useMovieDetails";
 
 const Browse = () => {
   const viewGptSearch = useSelector((store) => store.gpt?.viewGptSearch);
@@ -19,6 +20,7 @@ const Browse = () => {
   usePopularMovies();
   useUpcomingMovies();
   useRatedShows();
+  useMovieDetails(278);
   const loading = useShowDetails(PEAKYB_SHOW_ID);
   if(loading) return <ShimmerBrowsePage />;
   return (
