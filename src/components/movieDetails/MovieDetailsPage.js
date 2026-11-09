@@ -2,11 +2,15 @@ import {useParams} from 'react-router-dom';
 import useMovieDetails from '../../hooks/useMovieDetails';
 import { useSelector } from 'react-redux';
 import MovieHero from './MovieHero';
+import useMovieTrailer from '../../hooks/useMovieTrailer';
 
 const MovieDetailsPage = () => {
+  const trailerVideo = useSelector(store=> store.movies.trailerVideo);
   const {movieId } = useParams();
   const loading = useMovieDetails(movieId);
+  useMovieTrailer(movieId);
   const movie = useSelector(store => store.movies.movieDetails);
+
   if(loading) {
     return (
       <div className="bg-black min-h-screen text-white flex items-center justify-center">Loading movie details</div>
@@ -16,7 +20,7 @@ const MovieDetailsPage = () => {
 
   return (
     <div className='bg-black min-h-screen'>
-      <MovieHero movie={movie} />
+      <MovieHero movie={movie} trailerVideo={trailerVideo} />
     </div>
   )
 }

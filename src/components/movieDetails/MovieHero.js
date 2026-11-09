@@ -1,7 +1,8 @@
 import React from "react";
 import { MOVIE_BACKDROP_URL } from "../../utils/constants";
+import { Play } from "lucide-react";
 
-const MovieHero = ({ movie }) => {
+const MovieHero = ({ movie, trailerVideo }) => {
   if (!movie) return;
   const {
     genres,
@@ -45,6 +46,12 @@ const MovieHero = ({ movie }) => {
         <p className="leading-relaxed text-sm sm:text-base sm:max-w-2xl">
           {overview}
         </p>
+        {trailerVideo?.site === "YouTube" && trailerVideo?.key && (
+          <a href={`https://www.youtube.com/watch?v=${trailerVideo.key}`} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center gap-2 rounded-md bg-white px-5 py-3 text-sm font-semibold text-black transition-colors hover:bg-gray-300 sm:text-base">
+            <Play size={20} fill="currentColor"/>Play Trailer
+          </a>
+        )}
+    
       </div>
     </section>
   );

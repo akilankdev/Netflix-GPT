@@ -1,36 +1,44 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addTrailerVideo } from "../utils/moviesSlice";
 import { BACKEND_BASE_URL } from "../utils/constants";
-
+ //Fetch Movie trailer and updates redux store
 const useMovieTrailer = (movieId) => {
-  const trailerVideo = useSelector(store=> store.movies.trailerVideo);
-  //Fetch Movie trailer and updates redux store
+ 
   const dispatch = useDispatch();
-  const getMovieVideos = async () => {
-    try {
-      const data = await fetch(
-        BACKEND_BASE_URL + "/movie/"+ movieId +"/videos"
-      );
-      const json = await data.json();
-      //Filtering the all the videos which are Trailers
-      const filteredTrailers = json.results.filter(
-        (video) => video.type === "Trailer",
-      );
-      //Handling the case if there is no trailer video for that movie
-      const trailer = filteredTrailers.length
-        ? filteredTrailers[0]
-        : json.results[0];
-      dispatch(addTrailerVideo(trailer));
-    } catch (error) {
-      console.error(error.message);
-    }
-  };
+
   useEffect(() => {
-    //Memoization
-    !trailerVideo && getMovieVideos();
-    // eslint-disable-next-line
-  }, []);
+    if (!movieId) return;
+    dispatch(addTrailerVideo(null));
+    const controller = new AbortController();
+
+    const getMovieVideos = async () => {
+      try {
+        const data = await fetch(
+          BACKEND_BASE_URL + "/movie/" + movieId + "/videos",
+          { signal: controller.signal },
+        );
+        const json = await data.json();
+        //Filtering the all the videos which are Trailers
+        const filteredTrailers = json.results.filter(
+          (video) => video.type === "Trailer",
+        );
+        //Handling the case if there is no trailer video for that movie
+        const trailer = filteredTrailers.length
+          ? filteredTrailers[0]
+          : json.results[0];
+        dispatch(addTrailerVideo(trailer));
+      } catch (error) {
+        if (error.name !== "AbortError") {
+          console.error(error.message);
+        }
+      }
+
+    };
+
+    getMovieVideos();
+    return () => controller.abort();
+  }, [movieId,dispatch]);
 };
 
 export default useMovieTrailer;
