@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Error from "./Error";
 import MovieDetailsPage from "./movieDetails/MovieDetailsPage";
-import ShowDetailsPage from "./showDetails/ShowDetailsPage";
+import ShowDetails from "./showDetails/ShowDetails";
 
 const Body = () => {
   const appRouter = createBrowserRouter([
@@ -22,7 +22,7 @@ const Body = () => {
       element: <MovieDetailsPage />
     },{
       path:'/tv/:showId',
-      element: <ShowDetailsPage/>
+      element: <ShowDetails/>
     }
   ]);
 

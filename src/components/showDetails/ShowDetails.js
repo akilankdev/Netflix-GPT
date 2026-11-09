@@ -5,7 +5,7 @@ import ShowHero from "./ShowHero";
 import MovieList from "../MovieList";
 import useSimilarShows from "../../hooks/useSimilarShows";
 
-const ShowDetailsPage = () => {
+const ShowDetails = () => {
   const {showId} = useParams();
   const loading = useShowDetails(showId);
   useSimilarShows(showId);
@@ -28,4 +28,4 @@ const ShowDetailsPage = () => {
   )
 }
 
-export default ShowDetailsPage
+export default ShowDetails

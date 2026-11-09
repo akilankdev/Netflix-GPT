@@ -8,9 +8,7 @@ const ShowHero = ({ show }) => {
     tagline,
     name,
     overview,
-    seasons,
     vote_average,
-    number_of_episodes,
     number_of_seasons,
     first_air_date,
     last_air_date
@@ -19,7 +17,7 @@ const ShowHero = ({ show }) => {
     <section className="text-white flex items-end min-h-[80vh]">
       {/* BACKGROUND IMG */}
       <img
-        src={TMDB_BACKDROP_URL + show.backdrop_path}
+        src={TMDB_BACKDROP_URL + backdrop_path}
         alt={name}
         className="absolute inset-0 h-full w-full object-cover"
       />
