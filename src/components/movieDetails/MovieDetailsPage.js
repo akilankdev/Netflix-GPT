@@ -4,9 +4,12 @@ import { useSelector } from 'react-redux';
 import MovieHero from './MovieHero';
 import useMovieTrailer from '../../hooks/useMovieTrailer';
 import useSimilarMovies from '../../hooks/useSimilarMovies';
+import MovieList from '../MovieList';
+
 
 const MovieDetailsPage = () => {
   const trailerVideo = useSelector(store=> store.movies.trailerVideo);
+  const similarMovies = useSelector(store=> store.movies.similarMovies);
   const {movieId } = useParams();
   const loading = useMovieDetails(movieId);
   useMovieTrailer(movieId);
@@ -23,6 +26,7 @@ const MovieDetailsPage = () => {
   return (
     <div className='bg-black min-h-screen'>
       <MovieHero movie={movie} trailerVideo={trailerVideo} />
+      <MovieList title="Similar Movies" movies={similarMovies}/>
     </div>
   )
 }
