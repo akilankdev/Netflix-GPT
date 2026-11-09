@@ -3,12 +3,14 @@ import useMovieDetails from '../../hooks/useMovieDetails';
 import { useSelector } from 'react-redux';
 import MovieHero from './MovieHero';
 import useMovieTrailer from '../../hooks/useMovieTrailer';
+import useSimilarMovies from '../../hooks/useSimilarMovies';
 
 const MovieDetailsPage = () => {
   const trailerVideo = useSelector(store=> store.movies.trailerVideo);
   const {movieId } = useParams();
   const loading = useMovieDetails(movieId);
   useMovieTrailer(movieId);
+  useSimilarMovies(movieId);
   const movie = useSelector(store => store.movies.movieDetails);
 
   if(loading) {
