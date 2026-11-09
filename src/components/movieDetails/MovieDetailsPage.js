@@ -3,7 +3,7 @@ import useMovieDetails from '../../hooks/useMovieDetails';
 import { useSelector } from 'react-redux';
 import MovieHero from './MovieHero';
 
-const MovieDetails = () => {
+const MovieDetailsPage = () => {
   const {movieId } = useParams();
   const loading = useMovieDetails(movieId);
   const movie = useSelector(store => store.movies.movieDetails);
@@ -21,4 +21,4 @@ const MovieDetails = () => {
   )
 }
 
-export default MovieDetails
+export default MovieDetailsPage;
