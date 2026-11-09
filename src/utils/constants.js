@@ -8,7 +8,7 @@ export const NETFLIX_USER_AVATAR =
   "https://tse3.mm.bing.net/th/id/OIP.kYYbdJhBIh1SEi8MKTPYpgHaHa?r=0&pid=Api&h=220&P=0";
 
 export const MOVIE_POSTER_URL = "https://image.tmdb.org/t/p/w200/";
-export const MOVIE_BACKDROP_URL = "https://image.tmdb.org/t/p/original";
+export const TMDB_BACKDROP_URL = "https://image.tmdb.org/t/p/original";
 export const BACKEND_BASE_URL = "https://tmdb-proxy-1-dtfl.onrender.com";
 
 //1396 is the ID for Breaking bad.Use it for fetching show details.

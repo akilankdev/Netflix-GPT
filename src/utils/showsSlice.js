@@ -8,6 +8,7 @@ const showsSlice = createSlice({
     ratedShows: null,
     showDetails: null,
     trailerVideo: null,
+    similarShows: null,
   },
   reducers: {
     addRatedShows:(state,action) => {
@@ -18,9 +19,12 @@ const showsSlice = createSlice({
     },
     addShowDetails:(state,action) => {
       state.showDetails = action.payload;
-    }
+    },
+    addSimilarShows:(state,action) => {
+      state.similarShows = action.payload;
+    },
   },
 });
 
-export const {addRatedShows,addTrailerVideo,addShowDetails} = showsSlice.actions;
+export const {addRatedShows,addTrailerVideo,addShowDetails,addSimilarShows} = showsSlice.actions;
 export default showsSlice.reducer;

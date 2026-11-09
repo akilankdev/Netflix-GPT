@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Error from "./Error";
 import MovieDetailsPage from "./movieDetails/MovieDetailsPage";
-import ShowDetailsPage from "./showDetails/showDetailsPage";
+import ShowDetailsPage from "./showDetails/ShowDetailsPage";
 
 const Body = () => {
   const appRouter = createBrowserRouter([

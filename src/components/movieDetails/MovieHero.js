@@ -1,5 +1,5 @@
 import React from "react";
-import { MOVIE_BACKDROP_URL } from "../../utils/constants";
+import { TMDB_BACKDROP_URL } from "../../utils/constants";
 import { Play } from "lucide-react";
 
 const MovieHero = ({ movie, trailerVideo }) => {
@@ -20,7 +20,7 @@ const MovieHero = ({ movie, trailerVideo }) => {
     <section className="flex items-end min-h-[80vh] overflow-hidden">
       {/* BACKGROUND IMG */}
       <img
-        src={MOVIE_BACKDROP_URL + backdrop_path}
+        src={TMDB_BACKDROP_URL + backdrop_path}
         alt={title}
         className="absolute inset-0 w-full h-full object-cover object-center"
       ></img>
