@@ -1,6 +1,6 @@
 import MovieCard from "./MovieCard";
 
-const MovieList = ({ title, movies }) => {
+const MovieList = ({ title, movies,mediaType = "movie" }) => {
   return (
     <div className="p-1 text-white relative z-30">
       <h1 className="sm:text-2xl text-xl py-4">{title}</h1>
@@ -14,6 +14,7 @@ const MovieList = ({ title, movies }) => {
               name={movie.title}
               posterPath={movie.poster_path}
               movieId={movie.id}
+              mediaType={mediaType}
             />
           ))}
         </div>

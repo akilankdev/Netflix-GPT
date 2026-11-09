@@ -1,10 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import { MOVIE_POSTER_URL } from "../utils/constants";
 
-const MovieCard = ({ name, posterPath, movieId }) => {
+const MovieCard = ({ name, posterPath, movieId,mediaType }) => {
   const navigate = useNavigate();
   const handleCardClick =() => {
-    navigate(`/movie/${movieId}`);
+    if(mediaType === "movie"){
+      navigate(`/movie/${movieId}`);
+    } else {
+      //Open show details page
+      navigate(`/tv/${movieId}`);
+    }
+    
   }
   return (
     <>
