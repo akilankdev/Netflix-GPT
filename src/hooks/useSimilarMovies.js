@@ -32,7 +32,7 @@ const useSimilarMovies = (movieId) => {
       }
     };
     fetchSimilarDetails();
-    return () => controller.abort;
+    return () => controller.abort();
     // eslint-disable-next-line
   }, [movieId]);
 };

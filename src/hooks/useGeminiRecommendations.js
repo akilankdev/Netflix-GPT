@@ -28,7 +28,6 @@ const useGeminiRecommendations = () => {
       }
 
       const json = await response.json();
-      // console.log("GEMINI RECOMM: ", json);
       dispatch(addRecommendations(json));
     } catch (error) {
       console.error("Error occurred: " + error.message);

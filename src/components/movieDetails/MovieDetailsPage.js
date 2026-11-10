@@ -18,7 +18,7 @@ const MovieDetailsPage = () => {
 
   if(loading) {
     return (
-      <div className="bg-black min-h-screen text-white flex items-center justify-center">Loading movie details</div>
+      <div className="bg-black min-h-screen text-white font-bold flex items-center justify-center">Loading movie details...</div>
     );
   }
   if(!movie) return null;

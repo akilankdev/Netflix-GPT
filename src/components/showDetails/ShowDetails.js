@@ -4,12 +4,15 @@ import { useSelector } from "react-redux";
 import ShowHero from "./ShowHero";
 import MovieList from "../MovieList";
 import useSimilarShows from "../../hooks/useSimilarShows";
+import useShowTrailer from "../../hooks/useShowTrailer";
 
 const ShowDetails = () => {
+  const trailerVideo = useSelector(store=> store.shows.trailerVideo);
   const {showId} = useParams();
   const loading = useShowDetails(showId);
   useSimilarShows(showId);
   const show = useSelector(store=> store.shows.showDetails);
+  useShowTrailer(showId);
   const similarShows = useSelector(store=> store.shows.similarShows);
   if(loading) {
     return (
@@ -20,7 +23,7 @@ const ShowDetails = () => {
   return (
     <div className="bg-black min-h-screen">
       {show &&
-      (<ShowHero show={show}/>)
+      (<ShowHero show={show} trailerVideo={trailerVideo}/>)
       }
       <div className="relative z-20">{similarShows && <MovieList title="Similar Shows" movies={similarShows} mediaType="tv"/>}</div>
       

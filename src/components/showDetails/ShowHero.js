@@ -1,7 +1,8 @@
 import React from "react";
 import { TMDB_BACKDROP_URL } from "../../utils/constants";
+import { Play } from "lucide-react";
 
-const ShowHero = ({ show }) => {
+const ShowHero = ({ show, trailerVideo }) => {
   const {
     backdrop_path,
     genres,
@@ -11,7 +12,7 @@ const ShowHero = ({ show }) => {
     vote_average,
     number_of_seasons,
     first_air_date,
-    last_air_date
+    last_air_date,
   } = show;
   return (
     <section className="text-white flex items-end min-h-[80vh]">
@@ -30,15 +31,36 @@ const ShowHero = ({ show }) => {
         <h1 className="text-3xl sm:text-5xl">{name}</h1>
         <p className="italic">{tagline}</p>
         <div className="flex flex-wrap gap-x-2">
-          <span>{"("+first_air_date.slice(0,4)} - {last_air_date?.slice(0,4)+")"}</span>
-          <span>•</span>
+          {first_air_date && last_air_date && (
+            <>
+              <span>
+                {"(" + first_air_date.slice(0, 4)} -{" "}
+                {last_air_date?.slice(0, 4) + ")"}
+              </span>
+              <span>•</span>
+            </>
+          )}
+
           <span>{number_of_seasons} Seasons</span>
           <span>•</span>
           <span className="text-yellow-300">{vote_average?.toFixed(1)}/10</span>
           <span>•</span>
-          <span>{genres?.map(genre=>genre.name).join(", ")}</span>
+          <span>{genres?.map((genre) => genre.name).join(", ")}</span>
         </div>
-        <p className="leading-relaxed text-sm sm:text-base sm:max-w-2xl">{overview}</p>
+        <p className="leading-relaxed text-sm sm:text-base sm:max-w-2xl">
+          {overview}
+        </p>
+        {trailerVideo?.site === "YouTube" && trailerVideo?.key && (
+          <a
+            href={`https://www.youtube.com/watch?v=${trailerVideo.key}`}
+            target="_blank"
+            rel="noreferrer"
+            className="text-black bg-white inline-flex mt-6 items-center rounded-md px-5 py-3 gap-2 text-sm font-semibold transition-colors hover:bg-gray-300 sm:text-base"
+          >
+            <Play size={20} fill="currentColor" />
+            Play Trailer
+          </a>
+        )}
       </div>
     </section>
   );
