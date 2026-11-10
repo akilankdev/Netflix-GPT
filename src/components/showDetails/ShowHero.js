@@ -2,6 +2,7 @@ import React from "react";
 import { TMDB_BACKDROP_URL } from "../../utils/constants";
 import { Play } from "lucide-react";
 
+
 const ShowHero = ({ show, trailerVideo }) => {
   const {
     backdrop_path,
@@ -15,6 +16,7 @@ const ShowHero = ({ show, trailerVideo }) => {
     last_air_date,
   } = show;
   return (
+
     <section className="text-white flex items-end min-h-[80vh]">
       {/* BACKGROUND IMG */}
       <img

@@ -60,7 +60,7 @@ const Header = ({ showOtherHeaderElements }) => {
             <div className="flex items-center justify-between">
               <button
                 onClick={handleGptSearchClick}
-                className="bg-orange-500 text-white px-3 py-1 m-2 rounded-md mr-6 sm:mr-6"
+                className="animate-bounce bg-orange-500 hover:bg-orange-600 transition-colors duration-300 text-white px-3 py-1 m-2 rounded-md mr-6 sm:mr-6"
               >
                 {viewGptSearch ? "Back to Home" : "GPT Search"}
               </button>{" "}

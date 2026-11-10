@@ -1,6 +1,7 @@
 import React from "react";
 import { TMDB_BACKDROP_URL } from "../../utils/constants";
 import { Play } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const MovieHero = ({ movie, trailerVideo }) => {
   if (!movie) return;

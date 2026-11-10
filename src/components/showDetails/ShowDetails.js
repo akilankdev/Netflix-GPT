@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import useShowDetails from "../../hooks/useShowDetails";
 import { useSelector } from "react-redux";
 import ShowHero from "./ShowHero";
@@ -22,6 +22,7 @@ const ShowDetails = () => {
 
   return (
     <div className="bg-black min-h-screen">
+      <Link to="/browse" className="absolute z-20 top-0 right-0 mt-2 mr-2 sm:mt-4 sm:mr-4 bg-orange-500 px-3 py-2 font-semibold rounded-md hover:bg-orange-600 transition-colors duration-300 text-white">Back to Home</Link>
       {show &&
       (<ShowHero show={show} trailerVideo={trailerVideo}/>)
       }
