@@ -3,10 +3,12 @@ import GptMovieSuggestions from "./GptMovieSuggestions";
 import { NETFLIX_BG_IMAGE } from "../utils/constants";
 import useGeminiRecommendations from "../hooks/useGeminiRecommendations";
 import GptInstructions from "./GptInstructions";
+import { useState } from "react";
 
 const GptSearchPage = () => {
   const { loading, fetchGeminiRecommendations, error } =
     useGeminiRecommendations();
+  const [showInstructions,setShowInstructions] = useState(true);
   return (
     <>
       <div className="fixed -z-10">
@@ -16,8 +18,9 @@ const GptSearchPage = () => {
         <GptSearchBar
           loading={loading}
           fetchGeminiRecommendations={fetchGeminiRecommendations}
+          onSearch={() => setShowInstructions(false)}
         />
-        <GptInstructions />
+        {showInstructions && <GptInstructions />}
         <GptMovieSuggestions loading={loading} error={error} />
       </div>
     </>
