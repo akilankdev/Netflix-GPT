@@ -15,7 +15,7 @@ const MainContainer = () => {
 // overflow-hidden — clips content that extends beyond the section's boundaries.
     <div className='overflow-hidden sm:h-screen relative bg-black '>
       <div className='absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/70'></div>
-      <VideoTitle title={showDetails.original_name} overview={showDetails.overview}/>
+      <VideoTitle title={showDetails.original_name} overview={showDetails.overview} showId={showDetails.id}/>
       <VideoBackground showId={showDetails.id}/>
     </div>
   )
