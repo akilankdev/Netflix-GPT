@@ -1,9 +1,12 @@
 import React from "react";
 import { TMDB_BACKDROP_URL } from "../../utils/constants";
 import { Play } from "lucide-react";
+import lang from "../../utils/languageConstants";
+import { useSelector } from "react-redux";
 
 
 const ShowHero = ({ show, trailerVideo }) => {
+  const langKey = useSelector((store) => store.userConfig.langValue);
   const {
     backdrop_path,
     genres,
@@ -60,7 +63,7 @@ const ShowHero = ({ show, trailerVideo }) => {
             className="text-black bg-white inline-flex mt-6 items-center rounded-md px-5 py-3 gap-2 text-sm font-semibold transition-colors hover:bg-gray-300 sm:text-base"
           >
             <Play size={20} fill="currentColor" />
-            Play Trailer
+            {lang[langKey].mainPage.playTrailer}
           </a>
         )}
       </div>

@@ -3,10 +3,10 @@ import { signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { ChevronDown, LogOut } from "lucide-react";
 import { useSelector } from "react-redux";
+import lang from "../utils/languageConstants";
 
 const UserIcon = () => {
-
-  
+  const langKey = useSelector((store) => store.userConfig.langValue);
   const user = useSelector((store) => store.user);
   const [isIconClicked, setIsIconClicked] = useState(false);
   const handleIconClick = () => {
@@ -49,7 +49,7 @@ const UserIcon = () => {
           onClick={handleSignout}
         >
           <LogOut size={18} />
-          Sign Out
+          {lang[langKey].common.signOut}
         </div>
       ) : (
         ""

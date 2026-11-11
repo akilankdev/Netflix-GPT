@@ -1,8 +1,11 @@
 import React from "react";
 import { TMDB_BACKDROP_URL } from "../../utils/constants";
 import { Play } from "lucide-react";
+import { useSelector } from "react-redux";
+import lang from "../../utils/languageConstants";
 
 const MovieHero = ({ movie, trailerVideo }) => {
+  const langKey = useSelector((store) => store.userConfig.langValue);
   if (!movie) return;
   const {
     genres,
@@ -48,7 +51,7 @@ const MovieHero = ({ movie, trailerVideo }) => {
         </p>
         {trailerVideo?.site === "YouTube" && trailerVideo?.key && (
           <a href={`https://www.youtube.com/watch?v=${trailerVideo.key}`} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center gap-2 rounded-md bg-white px-5 py-3 text-sm font-semibold text-black transition-colors hover:bg-gray-300 sm:text-base">
-            <Play size={20} fill="currentColor"/>Play Trailer
+            <Play size={20} fill="currentColor"/>{lang[langKey].mainPage.playTrailer}
           </a>
         )}
     

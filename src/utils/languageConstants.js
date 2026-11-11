@@ -3,10 +3,10 @@ const lang = {
   en: {
     common: {
       home: "Back To Home",
-      loadingMessage: "Loading Details...",
       signOut: "Sign Out"
     },
     detailsPage: {
+      loadingMessage: "Loading Details...",
       similarMov: "Similar Movies",
       similarTV: "Similar Shows",
     },
@@ -29,7 +29,7 @@ const lang = {
     gpt: {
       gptSearchText: "Search",
       gptSearchPlaceholder: "What would you like to watch?",
-      intructions: {
+      instructions: {
         title: "How to use Gemini Recommendations",
         msgOne: "Gemini currently supports movie recommendations. It cannot recommend TV shows or web series.",
         msgTwoTitle: "Results may vary:",
@@ -45,11 +45,11 @@ const lang = {
   tamil: {
     common: {
       home: "முகப்புக்குத் திரும்பு",
-      loadingMessage: "விவரங்கள் ஏற்றப்படுகின்றன...",
       signOut: "வெளியேறு"
     },
 
     detailsPage: {
+      loadingMessage: "விவரங்கள் ஏற்றப்படுகின்றன...",
       similarMov: "இதே போன்ற திரைப்படங்கள்",
       similarTV: "இதே போன்ற தொடர்கள்",
     },
@@ -75,7 +75,7 @@ const lang = {
     gpt: {
       gptSearchText: "தேடு",
       gptSearchPlaceholder: "நீங்கள் என்ன பார்க்க விரும்புகிறீர்கள்?",
-      intructions: {
+      instructions: {
         title: "Gemini பரிந்துரைகளை எவ்வாறு பயன்படுத்துவது?",
         msgOne: "தற்போது Gemini திரைப்படங்களை மட்டுமே பரிந்துரைக்கும். தொலைக்காட்சித் தொடர்கள் அல்லது வெப் சீரிஸ்களைப் பரிந்துரைக்க முடியாது.",
         msgTwoTitle: "முடிவுகள் மாறுபடலாம்:",
