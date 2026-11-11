@@ -13,8 +13,10 @@ import DisclaimerPopup from "./DisclaimerPopup";
 import { NETFLIX_USER_AVATAR } from "../utils/constants";
 import { LogIn, UserRoundPlus, LoaderCircle } from "lucide-react";
 import lang from "../utils/languageConstants";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const langKey = useSelector((store) => store.userConfig.langValue);
   //Loading spinner state
   const [isLoading, setIsLoading] = useState(false);
@@ -71,6 +73,7 @@ const Login = () => {
             photoURL: user.photoURL,
           }),
         );
+        navigate("/browse");
       } catch (error) {
         // Handle errors from either Firebase operation
         setErrorMessage(error.message);
@@ -86,6 +89,7 @@ const Login = () => {
           email.current.value,
           password.current.value,
         );
+        navigate("/browse");
       } catch (error) {
         //catch errors during sign in
         setErrorMessage(error.message);

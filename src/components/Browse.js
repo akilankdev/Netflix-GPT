@@ -9,7 +9,7 @@ import useRatedShows from "../hooks/useRatedShows";
 import GptSearchPage from "./GptSearchPage";
 import { useSelector } from "react-redux";
 import useShowDetails from "../hooks/useShowDetails";
-import { PEAKYB_SHOW_ID } from "../utils/constants";
+import { BRBA_SHOW_ID } from "../utils/constants";
 import ShimmerBrowsePage from "./ShimmerBrowsePage";
 
 const Browse = () => {
@@ -19,7 +19,7 @@ const Browse = () => {
   usePopularMovies();
   useUpcomingMovies();
   useRatedShows();
-  const loading = useShowDetails(PEAKYB_SHOW_ID);
+  const loading = useShowDetails(BRBA_SHOW_ID);
   if(loading) return <ShimmerBrowsePage />;
   return (
     <div className="">

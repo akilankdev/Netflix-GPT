@@ -36,11 +36,8 @@ const Header = ({ showOtherHeaderElements }) => {
             photoURL,
           })
         );
-
-        navigate("/browse");
       } else {
         dispatch(removeUser());
-        navigate("/");
       }
     });
 
