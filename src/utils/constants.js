@@ -24,6 +24,6 @@ export const LANG_CONFIG = [
   },
   {
     identifier: "tamil",
-    name: "Tamil",
+    name: "தமிழ்(Tamil)",
   },
 ];

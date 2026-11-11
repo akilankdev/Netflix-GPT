@@ -7,13 +7,15 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import DisclaimerPopup from "./DisclaimerPopup";
 import { NETFLIX_USER_AVATAR } from "../utils/constants";
 import { LogIn, UserRoundPlus, LoaderCircle } from "lucide-react";
+import lang from "../utils/languageConstants";
 
 const Login = () => {
+  const langKey = useSelector((store) => store.userConfig.langValue);
   //Loading spinner state
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
@@ -116,7 +118,7 @@ const Login = () => {
         >
           <h1 className="font-bold text-3xl mb-3 text-white flex items-center gap-4">
             {isSignInForm ? <LogIn size={25} /> : <UserRoundPlus size={25} />}
-            {isSignInForm ? "Sign In" : "Sign Up"}
+            {isSignInForm ? lang[langKey].login.signIn : lang[langKey].login.signUp}
           </h1>
           {
             //If its a SignUp form,enter name as a input
@@ -148,7 +150,7 @@ const Login = () => {
             disabled={isLoading}
             className="w-full p-3 my-6 text-xl bg-red-600 hover:bg-red-900 rounded-lg text-white flex items-center gap-2 justify-center"
           >
-            {isSignInForm ? "Sign In" : "Sign Up"}
+            {isSignInForm ? lang[langKey].login.signIn : lang[langKey].login.signUp}
             {isLoading && <LoaderCircle size={16} className="animate-spin" />}
           </button>
           <p
@@ -156,8 +158,8 @@ const Login = () => {
             onClick={toggleSignInForm}
           >
             {isSignInForm
-              ? "Don't have an account? Sign Up here"
-              : "Already registered? Sign In here"}
+              ? lang[langKey].login.signUpMessage
+              : lang[langKey].login.signInMessage}
           </p>
         </form>
       </main>

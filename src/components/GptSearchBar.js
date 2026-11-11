@@ -21,10 +21,10 @@ const GptSearchBar = ({loading,fetchGeminiRecommendations,onSearch}) => {
           ref={searchText}
           type="text"
           className="p-3 sm:m-4 my-4 ml-2 col-span-8 sm:col-span-9"
-          placeholder={lang[langKey].gptSearchPlaceholder}
+          placeholder={lang[langKey].gpt.gptSearchPlaceholder}
 
         ></input>
-        <button className="col-span-4 sm:col-span-3 py-2 sm:px-3 my-4 mx-1 sm:m-4 sm:text-lg bg-red-700 text-white rounded-md" disabled={loading} type="submit">{loading ?<span className="flex justify-between items-center">{"Generating "}<LoaderCircle size={26} className="animate-spin" /></span>: lang[langKey].gptSearchText }</button>
+        <button className="col-span-4 sm:col-span-3 py-2 sm:px-3 my-4 mx-1 sm:m-4 sm:text-lg bg-red-700 text-white rounded-md" disabled={loading} type="submit">{loading ?<span className="flex justify-between items-center">{"Generating "}<LoaderCircle size={26} className="animate-spin" /></span>: lang[langKey].gpt.gptSearchText }</button>
       </form>               
     </div>
   );
